@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Stratos Edge — Brand Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@200;300;400;500;600;700&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  @page { size: letter; margin: 0; }
+
+  :root {
+    --ink: #04242D;
+    --muted: rgba(4, 36, 45, 0.55);
+    --hairline: rgba(4, 36, 45, 0.12);
+    --hairline-soft: rgba(4, 36, 45, 0.08);
+    --coral: #FF6B4A;
+    --coral-end: #FF8A6B;
+    --cream: #F2F0E9;
+    --offwhite: #F8F8F8;
+    --dark: #04242D;
+  }
+
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: #FFFFFF; }
+  body {
+    font-family: 'Lora', Georgia, 'Times New Roman', serif;
+    color: var(--ink);
+    font-size: 10.5pt;
+    line-height: 1.55;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .page {
+    width: 8.5in;
+    height: 11in;
+    padding: 0.55in 0.7in 0.7in 0.7in;
+    page-break-after: always;
+    page-break-inside: avoid;
+    position: relative;
+    overflow: hidden;
+  }
+  .page:last-child { page-break-after: auto; }
+  .page.cover {
+    padding: 0.75in 0.75in 0.65in 0.75in;
+    background: var(--dark);
+    color: #FFFFFF;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  h1, h2, h3, h4 { font-family: 'Work Sans', -apple-system, sans-serif; color: var(--ink); margin: 0; }
+  h1 { font-weight: 200; font-size: 56pt; letter-spacing: -0.03em; line-height: 1.0; }
+  h2 { font-weight: 400; font-size: 24pt; letter-spacing: -0.02em; line-height: 1.15; margin: 0 0 0.35em 0; }
+  h3 { font-weight: 600; font-size: 11pt; line-height: 1.3; margin: 1.4em 0 0.5em 0; }
+  h4 { font-weight: 600; font-size: 8pt; letter-spacing: 0.12em; text-transform: uppercase; color: var(--coral); margin: 0 0 0.4em 0; }
+  p  { margin: 0.35em 0 0.75em 0; }
+  .coral { color: var(--coral); }
+  .lead { font-size: 11pt; line-height: 1.5; color: var(--ink); margin-bottom: 1em; }
+  .meta { font-family: 'Work Sans', sans-serif; font-size: 7pt; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); }
+  .eyebrow { font-family: 'Work Sans', sans-serif; font-size: 7.5pt; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--coral); display: block; margin-bottom: 8pt; }
+  .wordmark { font-family: 'Work Sans', sans-serif; font-size: 8pt; font-weight: 500; letter-spacing: 0.25em; text-transform: uppercase; white-space: nowrap; }
+  .wordmark .sep { display: inline-block; width: 1px; height: 9pt; vertical-align: middle; margin: 0 5pt; background: var(--muted); }
+  .wordmark .edge { font-weight: 300; letter-spacing: 0.22em; opacity: 0.85; }
+
+  .page-header { position: absolute; top: 0.3in; left: 0.7in; right: 0.7in; display: flex; justify-content: space-between; align-items: center; }
+  .page-footer { position: absolute; bottom: 0.3in; left: 0.7in; right: 0.7in; display: flex; justify-content: space-between; align-items: baseline; border-top: 1px solid var(--hairline-soft); padding-top: 8pt; font-family: 'Work Sans', sans-serif; font-size: 7pt; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); }
+  .page-content { padding-top: 0.3in; }
+
+  .cover .top { display: flex; justify-content: space-between; align-items: flex-start; }
+  .cover .wordmark { color: #FFFFFF; font-size: 9pt; }
+  .cover .wordmark .sep { background: rgba(255,255,255,0.30); height: 10pt; }
+  .cover .meta-top { font-family: 'Work Sans', sans-serif; font-size: 7pt; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(255,255,255,0.55); }
+  .cover .hero { margin-top: 3.8in; }
+  .cover .eyebrow-cover { font-family: 'Work Sans', sans-serif; font-size: 8.5pt; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase; color: var(--coral); margin-bottom: 14pt; display: block; }
+  .cover h1 { color: #FFFFFF; }
+  .cover .subtitle { font-family: 'Lora', serif; font-size: 12pt; color: rgba(255,255,255,0.70); margin-top: 22pt; max-width: 5in; line-height: 1.5; }
+  .cover .accent-bar { width: 44pt; height: 3pt; border-radius: 2pt; background: linear-gradient(135deg, var(--coral) 0%, var(--coral-end) 100%); margin-top: 28pt; }
+  .cover .bottom { display: flex; justify-content: space-between; align-items: baseline; font-family: 'Work Sans', sans-serif; font-size: 7.5pt; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(255,255,255,0.40); }
+
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14pt; }
+  .grid-5 { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr 1fr; gap: 9pt; }
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 18pt; }
+
+  .swatch { border-radius: 4pt; overflow: hidden; border: 1px solid var(--hairline-soft); }
+  .swatch .chip { height: 52pt; }
+  .swatch .label { padding: 6pt 8pt; background: #FFFFFF; }
+  .swatch .name { font-family: 'Work Sans', sans-serif; font-size: 8pt; font-weight: 600; color: var(--ink); letter-spacing: 0.04em; }
+  .swatch .hex { font-family: 'Work Sans', sans-serif; font-size: 7pt; font-weight: 400; color: var(--muted); margin-top: 1pt; }
+
+  .type-sample { padding: 14pt 16pt; background: var(--offwhite); border-radius: 4pt; margin-bottom: 10pt; }
+  .type-sample .label { font-family: 'Work Sans', sans-serif; font-size: 7pt; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--coral); margin-bottom: 8pt; }
+  .type-sample .work-sans { font-family: 'Work Sans', sans-serif; color: var(--ink); }
+  .type-sample .lora { font-family: 'Lora', serif; color: var(--ink); }
+  .type-sample .note { font-family: 'Work Sans', sans-serif; font-size: 7.5pt; color: var(--muted); margin-top: 8pt; line-height: 1.5; }
+
+  .mark-preview { border-radius: 4pt; overflow: hidden; border: 1px solid var(--hairline-soft); }
+  .mark-preview .pad { height: 80pt; display: flex; align-items: center; justify-content: center; }
+  .mark-preview .pad img { max-width: 60%; max-height: 52pt; height: auto; }
+  .mark-preview .pad.dark { background: var(--dark); }
+  .mark-preview .pad.light { background: #FFFFFF; border-bottom: 1px solid var(--hairline-soft); }
+  .mark-preview .caption { padding: 6pt 8pt; background: var(--offwhite); font-family: 'Work Sans', sans-serif; font-size: 7.5pt; color: var(--muted); }
+
+  table { width: 100%; border-collapse: collapse; font-size: 9pt; margin: 6pt 0 10pt 0; }
+  th, td { padding: 5pt 8pt; text-align: left; border-bottom: 1px solid var(--hairline-soft); vertical-align: top; font-family: 'Lora', serif; }
+  th { font-family: 'Work Sans', sans-serif; font-size: 7pt; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--coral); border-bottom: 1px solid var(--coral); }
+  td.k { font-family: 'Work Sans', sans-serif; font-weight: 500; color: var(--ink); font-size: 9pt; }
+  td.mono { font-family: 'Work Sans', sans-serif; font-size: 8.5pt; color: var(--ink); }
+
+  code, .mono { font-family: 'Work Sans', sans-serif; font-size: 8.5pt; background: var(--offwhite); padding: 1pt 4pt; border-radius: 2pt; color: var(--ink); }
+
+  .accent-bar { width: 44pt; height: 3pt; border-radius: 2pt; background: linear-gradient(135deg, var(--coral) 0%, var(--coral-end) 100%); margin: 14pt 0; }
+  .callout { border-left: 3pt solid var(--coral); padding: 8pt 14pt; background: #FFF8F5; margin: 10pt 0; font-size: 9.5pt; line-height: 1.55; }
+  .callout .label { font-family: 'Work Sans', sans-serif; font-size: 7pt; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--coral); margin-bottom: 3pt; }
+  .bg-block { padding: 12pt 14pt; border-radius: 4pt; margin-bottom: 6pt; }
+  .bg-block .label { font-family: 'Work Sans', sans-serif; font-size: 7pt; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 4pt; }
+  .bg-block .desc  { font-family: 'Lora', serif; font-size: 9pt; line-height: 1.4; }
+
+  ul { margin: 0.3em 0 0.6em 1em; padding: 0; font-size: 10pt; }
+  li { margin: 0.2em 0; line-height: 1.5; }
+
+  .demo-block { border: 1px solid var(--hairline-soft); border-radius: 4pt; padding: 14pt 16pt; background: #FFFFFF; margin-bottom: 8pt; }
+  .demo-block .demo-label { font-family: 'Work Sans', sans-serif; font-size: 7pt; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--coral); margin-bottom: 10pt; }
+  .demo-specs { font-family: 'Work Sans', sans-serif; font-size: 7.5pt; color: var(--muted); line-height: 1.5; margin-top: 8pt; }
+</style>
+</head>
+<body>
+
+<!-- ═══════ COVER ═══════ -->
+<div class="page cover">
+  <div class="top">
+    <span class="wordmark">STRATOS <span class="sep"></span><span class="edge">EDGE</span></span>
+    <span class="meta-top">Internal Reference</span>
+  </div>
+  <div class="hero">
+    <span class="eyebrow-cover">Brand Guidelines</span>
+    <h1>Brand Guide<span class="coral">.</span></h1>
+    <p class="subtitle">Color, typography, marks, and the signature devices that make a document instantly recognizable as Stratos Edge.</p>
+    <div class="accent-bar"></div>
+  </div>
+  <div class="bottom">
+    <span>stratosedge.ai</span>
+    <span>© 2026 Stratos Edge LLC</span>
+  </div>
+</div>
+
+<!-- ═══════ Page 2 — LOGO & IDENTITY ═══════ -->
+<div class="page">
+  <div class="page-header">
+    <span class="wordmark">STRATOS <span class="sep"></span><span class="edge">EDGE</span></span>
+    <span class="meta">Brand Guide</span>
+  </div>
+  <div class="page-content">
+    <h2>Logo &amp; Identity<span class="coral">.</span></h2>
+    <p class="lead">The Stratos Edge wordmark and lettermark — construction, usage, and rules.</p>
+
+    <h3>Wordmark construction</h3>
+    <p style="font-size: 9.5pt;">Set in Work Sans with a vertical separator between <code>STRATOS</code> and <code>EDGE</code>. <code>STRATOS</code> is weight 500, letter-spacing 0.18em. <code>EDGE</code> is weight 300, letter-spacing 0.14em, opacity 85%. The separator is a 1px × 13px bar at 25% white (on dark) or 15% black (on light) opacity.</p>
+
+    <div class="grid-2" style="margin-top: 10pt;">
+      <div class="mark-preview">
+        <div class="pad light"><img src="../../brand-assets/core/stratos-logo-black.png" alt="Wordmark on light"></div>
+        <div class="caption">On light backgrounds — default for documents</div>
+      </div>
+      <div class="mark-preview">
+        <div class="pad dark"><img src="../../brand-assets/core/stratos-logo-white.png" alt="Wordmark on dark"></div>
+        <div class="caption">On dark backgrounds — Playbook covers, footers</div>
+      </div>
+    </div>
+
+    <h3>Clear space and don'ts</h3>
+    <p style="font-size: 9.5pt;">Minimum clear space on all sides equals the cap height of the letterforms. Never crop into that space, never distort proportions, never recolor, never add drop-shadows or effects, never replace the fonts, and never embed the wordmark inside filled containers or colored circles.</p>
+
+    <h3>Lettermark</h3>
+    <p style="font-size: 9.5pt;">A compact mark for tight contexts where the full wordmark won't fit: favicons, app icons, profile photos, watermarks. Carries the signature coral period device.</p>
+
+    <div class="grid-2" style="margin-top: 10pt;">
+      <div class="mark-preview">
+        <div class="pad light"><img src="../../brand-assets/core/stratos-lettermark-black.png" alt="Lettermark on light"></div>
+        <div class="caption">On light backgrounds</div>
+      </div>
+      <div class="mark-preview">
+        <div class="pad dark"><img src="../../brand-assets/core/stratos-lettermark-white.png" alt="Lettermark on dark"></div>
+        <div class="caption">On dark backgrounds</div>
+      </div>
+    </div>
+
+    <div class="callout">
+      <div class="label">Don't pair them</div>
+      Never use the wordmark and the lettermark together in the same composition. Pick one based on available space.
+    </div>
+  </div>
+  <div class="page-footer"><span>stratosedge.ai</span><span>Page 2</span></div>
+</div>
+
+<!-- ═══════ Page 3 — COLOR SYSTEM ═══════ -->
+<div class="page">
+  <div class="page-header">
+    <span class="wordmark">STRATOS <span class="sep"></span><span class="edge">EDGE</span></span>
+    <span class="meta">Brand Guide</span>
+  </div>
+  <div class="page-content">
+    <h2>Color System<span class="coral">.</span></h2>
+    <p class="lead">The whole brand sits on a small palette. Use only these.</p>
+
+    <h4>Core palette</h4>
+    <div class="grid-5">
+      <div class="swatch">
+        <div class="chip" style="background: #04242D;"></div>
+        <div class="label"><div class="name">INK</div><div class="hex">#04242D</div></div>
+      </div>
+      <div class="swatch">
+        <div class="chip" style="background: #FF6B4A;"></div>
+        <div class="label"><div class="name">CORAL</div><div class="hex">#FF6B4A</div></div>
+      </div>
+      <div class="swatch">
+        <div class="chip" style="background: #FFFFFF; border-bottom: 1px solid var(--hairline-soft);"></div>
+        <div class="label"><div class="name">WHITE</div><div class="hex">#FFFFFF</div></div>
+      </div>
+      <div class="swatch">
+        <div class="chip" style="background: #F8F8F8;"></div>
+        <div class="label"><div class="name">OFFWHITE</div><div class="hex">#F8F8F8</div></div>
+      </div>
+      <div class="swatch">
+        <div class="chip" style="background: #F2F0E9;"></div>
+        <div class="label"><div class="name">CREAM</div><div class="hex">#F2F0E9</div></div>
+      </div>
+    </div>
+
+    <h4 style="margin-top: 14pt;">Text hierarchy — light pages</h4>
+    <table style="margin: 4pt 0 8pt 0;">
+      <tr><th>Role</th><th>Value</th><th>Use</th></tr>
+      <tr><td class="k">Primary</td><td class="mono">#04242D</td><td>Headlines and body</td></tr>
+      <tr><td class="k">Muted</td><td class="mono">rgba(4, 36, 45, 0.55)</td><td>Sub-copy, captions, footer text. Opacity on INK — not a separate grey.</td></tr>
+      <tr><td class="k">Hairline</td><td class="mono">rgba(4, 36, 45, 0.08)</td><td>Card borders, dividers</td></tr>
+    </table>
+
+    <h4>Text hierarchy — dark teal pages</h4>
+    <table style="margin: 4pt 0 8pt 0;">
+      <tr><th>Role</th><th>Value</th><th>Use</th></tr>
+      <tr><td class="k">Primary</td><td class="mono">#FFFFFF or #F5F5F7</td><td>Headlines and primary text on dark</td></tr>
+      <tr><td class="k">Body / secondary</td><td class="mono">rgba(245, 245, 247, 0.65)</td><td>Body paragraphs on dark</td></tr>
+      <tr><td class="k">Muted</td><td class="mono">rgba(245, 245, 247, 0.45)</td><td>Captions, dim labels on dark</td></tr>
+      <tr><td class="k">Footer</td><td class="mono">rgba(245, 245, 247, 0.25)</td><td>Footer chrome on dark</td></tr>
+      <tr><td class="k">Accent</td><td class="mono">#FF6B4A</td><td>Coral reads correctly on the deep teal</td></tr>
+    </table>
+
+    <h4>Utility</h4>
+    <table style="margin: 4pt 0 0 0;">
+      <tr><th>Role</th><th>Value</th><th>Use</th></tr>
+      <tr><td class="k">Coral tint</td><td class="mono">#FFF8F5</td><td>Faint warm bg for highlighted callouts</td></tr>
+      <tr><td class="k">Status — live</td><td class="mono">#0F9D6E</td><td>"Live / Confidential" dot</td></tr>
+      <tr><td class="k">Status — preview</td><td class="mono">#E6A61C</td><td>"Admin preview / Draft" dot</td></tr>
+    </table>
+
+    <div class="callout" style="margin-top: 12pt;">
+      <div class="label">Do not use</div>
+      The old <code>#0E0E11</code> "near-black" (replaced by INK). Separate <code>#555</code> / <code>#999</code> greys for text (use opacity on INK instead). A blue. More than one coral per visible area.
+    </div>
+  </div>
+  <div class="page-footer"><span>stratosedge.ai</span><span>Page 3</span></div>
+</div>
+
+<!-- ═══════ Page 4 — TYPOGRAPHY ═══════ -->
+<div class="page">
+  <div class="page-header">
+    <span class="wordmark">STRATOS <span class="sep"></span><span class="edge">EDGE</span></span>
+    <span class="meta">Brand Guide</span>
+  </div>
+  <div class="page-content">
+    <h2>Typography<span class="coral">.</span></h2>
+    <p class="lead">Two fonts. Work Sans is the brand voice; Lora is the body and the editorial moment.</p>
+
+    <div class="type-sample">
+      <div class="label">Work Sans — the brand voice</div>
+      <div class="work-sans" style="font-weight: 400; font-size: 26pt; letter-spacing: -0.02em; line-height: 1.1;">AI failures aren't technology failures<span class="coral">.</span></div>
+      <div class="note">Google Fonts — Work Sans. Weights: 200, 300, 400, 500, 600, 700. Fallback: <code>-apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif</code>. Brand voice lives at weight 400 for headlines, 200 for serene / large treatments (covers, FlightPlan auth).</div>
+    </div>
+
+    <div class="type-sample">
+      <div class="label">Lora — body &amp; editorial</div>
+      <div class="lora" style="font-size: 13pt; line-height: 1.55;">Stratos Edge advises mid-market organizations in healthcare and financial services where getting AI right is a strategy problem before it is a technology problem.</div>
+      <div class="note">Google Fonts — Lora. Weights: 400, 500, 600, 700 + italic variants. Fallback: <code>Georgia, "Times New Roman", serif</code>. Used for body paragraphs, long-read content, and FlightPlan deliverable hero titles.</div>
+    </div>
+
+    <h4 style="margin-top: 12pt;">Type scale</h4>
+    <table>
+      <tr><th>Element</th><th>Font</th><th>Size</th><th>Weight</th><th>Notes</th></tr>
+      <tr><td class="k">Hero headline</td><td>Work Sans</td><td>40–72pt</td><td>400</td><td>-0.015 to -0.02em. Coral period.</td></tr>
+      <tr><td class="k">Section headline</td><td>Work Sans</td><td>32–56pt</td><td>400</td><td>-0.02em. Coral period.</td></tr>
+      <tr><td class="k">Cover title</td><td>Work Sans</td><td>48–72pt</td><td>200</td><td>-0.03em. Coral period.</td></tr>
+      <tr><td class="k">Sub-heading</td><td>Work Sans</td><td>16–22pt</td><td>600</td><td></td></tr>
+      <tr><td class="k">Editorial hero</td><td>Lora</td><td>32–48pt</td><td>400</td><td>FlightPlan / Playbook dark hero sections.</td></tr>
+      <tr><td class="k">Body</td><td>Lora</td><td>16–18pt</td><td>400</td><td>Line-height 1.55. INK.</td></tr>
+      <tr><td class="k">Body small / caption</td><td>Lora</td><td>13–14pt</td><td>400</td><td>MUTED.</td></tr>
+      <tr><td class="k">Eyebrow / label</td><td>Work Sans</td><td>9–13pt</td><td>500–600</td><td>UPPERCASE. 0.12–0.22em. CORAL.</td></tr>
+      <tr><td class="k">Wordmark small</td><td>Work Sans</td><td>9–10pt</td><td>500</td><td>UPPERCASE. 0.25em.</td></tr>
+      <tr><td class="k">Button label</td><td>Work Sans</td><td>14pt</td><td>400</td><td></td></tr>
+    </table>
+
+    <h3>Pairing rule</h3>
+    <p style="font-size: 9.5pt;">Structure → Work Sans. Story → Lora. The website's one notable inversion: nav is Lora, not Work Sans — reads "publication," not "tech product." Differentiation comes through weight and italic style, not new colors.</p>
+  </div>
+  <div class="page-footer"><span>stratosedge.ai</span><span>Page 4</span></div>
+</div>
+
+<!-- ═══════ Page 5 — THE CORAL PERIOD ═══════ -->
+<div class="page">
+  <div class="page-header">
+    <span class="wordmark">STRATOS <span class="sep"></span><span class="edge">EDGE</span></span>
+    <span class="meta">Brand Guide</span>
+  </div>
+  <div class="page-content">
+    <h2>The coral period<span class="coral">.</span></h2>
+    <p class="lead">The single most signature typographic move. Every brand headline ends with a coral period.</p>
+
+    <div class="demo-block">
+      <div class="demo-label">Examples</div>
+      <div class="work-sans" style="font-family: 'Work Sans'; font-weight: 400; font-size: 21pt; letter-spacing: -0.02em; line-height: 1.3;">What we help you do<span class="coral">.</span></div>
+      <div class="work-sans" style="font-family: 'Work Sans'; font-weight: 400; font-size: 21pt; letter-spacing: -0.02em; line-height: 1.3;">FlightPlan™ is how we do it<span class="coral">.</span></div>
+      <div class="work-sans" style="font-family: 'Work Sans'; font-weight: 400; font-size: 21pt; letter-spacing: -0.02em; line-height: 1.3;">Your documents are on the way<span class="coral">.</span></div>
+      <div class="work-sans" style="font-family: 'Work Sans'; font-weight: 400; font-size: 21pt; letter-spacing: -0.02em; line-height: 1.3;">Ready to see the full picture<span class="coral">?</span></div>
+    </div>
+
+    <h3>Mechanics</h3>
+    <p style="font-size: 9.5pt;">The headline is set in INK / white / on-background color; only the terminal <code>.</code> switches to CORAL. The period inherits the headline's font weight and size — it just changes color.</p>
+    <pre style="font-family: 'Work Sans', sans-serif; font-size: 8.5pt; background: var(--offwhite); padding: 10pt 12pt; border-radius: 4pt; color: var(--ink); margin: 6pt 0; overflow: hidden;">What we help you do&lt;span style="color: #FF6B4A"&gt;.&lt;/span&gt;</pre>
+
+    <h3>Rules</h3>
+    <ul style="font-size: 9.5pt;">
+      <li>One per headline. Not per sentence in a paragraph.</li>
+      <li>Always at the end. Never mid-headline.</li>
+      <li>Question marks and exclamation marks follow the same rule — the terminal punctuation switches color.</li>
+      <li>The period inherits the headline's font weight and size automatically — don't restyle it.</li>
+      <li>Don't use on body paragraphs. The coral period is a <em>headline</em> device.</li>
+      <li>Don't use more than once per visible page section. It loses meaning if repeated.</li>
+    </ul>
+
+    <div class="callout">
+      <div class="label">Why this matters</div>
+      The coral period is the cheapest, fastest brand recognition device. Anyone who's seen the website recognizes it. Use it on every document headline so a Stratos Edge document is instantly identifiable — even from across the room.
+    </div>
+  </div>
+  <div class="page-footer"><span>stratosedge.ai</span><span>Page 5</span></div>
+</div>
+
+<!-- ═══════ Page 6 — SIGNATURE DEVICES ═══════ -->
+<div class="page">
+  <div class="page-header">
+    <span class="wordmark">STRATOS <span class="sep"></span><span class="edge">EDGE</span></span>
+    <span class="meta">Brand Guide</span>
+  </div>
+  <div class="page-content">
+    <h2>Signature devices<span class="coral">.</span></h2>
+    <p class="lead">Visual moves that recur across the site and FlightPlan deliverables. Use consistently — they make material instantly recognizable.</p>
+
+    <h3>Accent bar</h3>
+    <p style="font-size: 9.5pt;">Short coral gradient bar — section divider, or underline beneath a document title.</p>
+    <div class="demo-block">
+      <div class="accent-bar" style="margin: 4pt 0;"></div>
+      <div class="demo-specs">44pt wide · 3pt tall · 2pt radius · <code>linear-gradient(135deg, #FF6B4A 0%, #FF8A6B 100%)</code></div>
+    </div>
+
+    <h3>Eyebrow label</h3>
+    <p style="font-size: 9.5pt;">Small uppercase tracked-out coral label sitting above a headline. One per section.</p>
+    <div class="demo-block">
+      <span class="eyebrow">Brand Guidelines</span>
+      <div class="work-sans" style="font-family: 'Work Sans'; font-weight: 400; font-size: 22pt; letter-spacing: -0.02em; line-height: 1.2;">Signature devices<span class="coral">.</span></div>
+      <div class="demo-specs" style="margin-top: 8pt;">Work Sans · 9–13pt · weight 500–600 · UPPERCASE · letter-spacing 0.12–0.22em · CORAL</div>
+    </div>
+
+    <h3>Status dot</h3>
+    <p style="font-size: 9.5pt;">Small filled circle (6×6px) paired with a small Work Sans uppercase label. Used in document headers to indicate state.</p>
+    <div class="demo-block">
+      <div style="display: flex; gap: 22pt;">
+        <div style="display: inline-flex; align-items: center; gap: 6pt;">
+          <span style="display: inline-block; width: 7pt; height: 7pt; border-radius: 50%; background: #0F9D6E;"></span>
+          <span class="meta" style="color: var(--ink);">Live · Confidential</span>
+        </div>
+        <div style="display: inline-flex; align-items: center; gap: 6pt;">
+          <span style="display: inline-block; width: 7pt; height: 7pt; border-radius: 50%; background: #E6A61C;"></span>
+          <span class="meta" style="color: var(--ink);">Admin preview · Draft</span>
+        </div>
+        <div style="display: inline-flex; align-items: center; gap: 6pt;">
+          <span style="display: inline-block; width: 7pt; height: 7pt; border-radius: 50%; background: rgba(4,36,45,0.3);"></span>
+          <span class="meta" style="color: var(--ink);">Muted</span>
+        </div>
+      </div>
+      <div class="demo-specs" style="margin-top: 10pt;">Green <code>#0F9D6E</code> · Amber <code>#E6A61C</code> · Muted <code>rgba(4,36,45,0.3)</code></div>
+    </div>
+
+    <h3>Coral terminal punctuation</h3>
+    <p style="font-size: 9.5pt;">See <strong>Page 5 — The coral period</strong>. The most signature device. Used on every brand headline.</p>
+  </div>
+  <div class="page-footer"><span>stratosedge.ai</span><span>Page 6</span></div>
+</div>
+
+<!-- ═══════ Page 7 — COMPONENTS & PATTERNS ═══════ -->
+<div class="page">
+  <div class="page-header">
+    <span class="wordmark">STRATOS <span class="sep"></span><span class="edge">EDGE</span></span>
+    <span class="meta">Brand Guide</span>
+  </div>
+  <div class="page-content">
+    <h2>Components &amp; patterns<span class="coral">.</span></h2>
+    <p class="lead">Reusable visual elements. All optional — pick what serves the content. Use sparingly.</p>
+
+    <div class="two-col">
+      <div>
+        <h3 style="margin-top: 0;">Pull quote</h3>
+        <div style="background: var(--offwhite); border-left: 3pt solid var(--coral); padding: 12pt 16pt; margin: 4pt 0;">
+          <div style="font-family: 'Lora'; font-style: italic; font-size: 12pt; line-height: 1.45; color: var(--ink);">They just started. And they started with a plan.</div>
+        </div>
+        <div class="demo-specs">4pt CORAL left border · CREAM or OFFWHITE bg · Lora 400 italic · ~12pt · 28pt vertical margin</div>
+      </div>
+      <div>
+        <h3 style="margin-top: 0;">Emphasis line</h3>
+        <div style="background: #FFFFFF; border: 1px solid var(--hairline-soft); padding: 14pt 16pt; border-radius: 4pt; margin: 4pt 0;">
+          <div style="font-family: 'Work Sans'; font-weight: 300; font-size: 14pt; line-height: 1.3;">The real problem isn't AI.</div>
+          <div style="font-family: 'Work Sans'; font-weight: 500; font-size: 14pt; line-height: 1.3; color: var(--coral);">It's the plan.</div>
+        </div>
+        <div class="demo-specs">Work Sans 300 · punch phrase in CORAL at weight 500 · 26pt vertical margin</div>
+      </div>
+    </div>
+
+    <h3>Stat strip</h3>
+    <div style="display: flex; gap: 0; margin: 6pt 0; border: 1px solid var(--hairline-soft); border-radius: 4pt; overflow: hidden;">
+      <div style="flex: 1; padding: 14pt; text-align: center; border-right: 1px solid var(--hairline-soft);">
+        <div style="font-family: 'Work Sans'; font-weight: 200; font-size: 28pt; color: var(--coral); line-height: 1;">95%</div>
+        <div style="font-family: 'Work Sans'; font-weight: 500; font-size: 7pt; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin-top: 5pt;">of AI pilots fail</div>
+      </div>
+      <div style="flex: 1; padding: 14pt; text-align: center; border-right: 1px solid var(--hairline-soft);">
+        <div style="font-family: 'Work Sans'; font-weight: 200; font-size: 28pt; color: var(--coral); line-height: 1;">70%</div>
+        <div style="font-family: 'Work Sans'; font-weight: 500; font-size: 7pt; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin-top: 5pt;">are governance</div>
+      </div>
+      <div style="flex: 1; padding: 14pt; text-align: center;">
+        <div style="font-family: 'Work Sans'; font-weight: 200; font-size: 28pt; color: var(--coral); line-height: 1;">97%</div>
+        <div style="font-family: 'Work Sans'; font-weight: 500; font-size: 7pt; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin-top: 5pt;">use AI poorly</div>
+      </div>
+    </div>
+    <div class="demo-specs">Numbers: Work Sans 200 · ~28pt · CORAL · Labels: Work Sans 500 · 7pt UPPERCASE · 0.08em · MUTED · 1px gap · 6pt radius</div>
+
+    <div class="two-col" style="margin-top: 14pt;">
+      <div>
+        <h3 style="margin-top: 0;">CTA button</h3>
+        <div style="margin: 6pt 0;">
+          <span style="display: inline-block; padding: 9pt 22pt; border-radius: 6pt; background: linear-gradient(135deg, #FF6B4A 0%, #FF8A6B 100%); color: #FFFFFF; font-family: 'Work Sans'; font-weight: 500; font-size: 10pt; letter-spacing: 0.02em;">Start a Conversation</span>
+        </div>
+        <div class="demo-specs">Coral gradient (135°) · Work Sans 9–10pt / 500 · white text · 6pt radius · 10pt × 28pt padding · one per page max</div>
+      </div>
+      <div>
+        <h3 style="margin-top: 0;">Numbered insight</h3>
+        <div style="display: flex; align-items: flex-start; gap: 10pt; margin: 6pt 0;">
+          <div style="font-family: 'Work Sans'; font-weight: 700; font-size: 32pt; color: var(--coral); opacity: 0.28; line-height: 1; flex: 0 0 auto;">01</div>
+          <div style="padding-top: 4pt;">
+            <div style="font-family: 'Work Sans'; font-weight: 600; font-size: 11pt; color: var(--ink); margin-bottom: 3pt;">Section title here.</div>
+            <div style="font-family: 'Lora'; font-size: 9pt; color: var(--muted); line-height: 1.5;">Body text follows. Used for numbered arguments in Playbook docs.</div>
+          </div>
+        </div>
+        <div class="demo-specs">Number: Work Sans 700 · 28–38pt · CORAL at 25–30% opacity · Title: Work Sans 600 · 11–12pt</div>
+      </div>
+    </div>
+  </div>
+  <div class="page-footer"><span>stratosedge.ai</span><span>Page 7</span></div>
+</div>
+
+<!-- ═══════ Page 8 — BACKGROUNDS & RHYTHM ═══════ -->
+<div class="page">
+  <div class="page-header">
+    <span class="wordmark">STRATOS <span class="sep"></span><span class="edge">EDGE</span></span>
+    <span class="meta">Brand Guide</span>
+  </div>
+  <div class="page-content">
+    <h2>Backgrounds &amp; rhythm<span class="coral">.</span></h2>
+    <p class="lead">A small set of section backgrounds, alternated for rhythm without introducing new colors.</p>
+
+    <div class="bg-block" style="background: #FFFFFF; border: 1px solid var(--hairline-soft); color: var(--ink);">
+      <div class="label" style="color: var(--ink);">WHITE · #FFFFFF</div>
+      <div class="desc">Default page background. Hero sections. The "rest" between active sections.</div>
+    </div>
+    <div class="bg-block" style="background: #F8F8F8; color: var(--ink);">
+      <div class="label" style="color: var(--ink);">OFFWHITE · #F8F8F8</div>
+      <div class="desc">Alternating sections for rhythm. Stat blocks. Subtle differentiation without color shift.</div>
+    </div>
+    <div class="bg-block" style="background: #F2F0E9; color: var(--ink);">
+      <div class="label" style="color: var(--ink);">CREAM · #F2F0E9</div>
+      <div class="desc">Warm editorial moments. Long-read content. Pull quotes.</div>
+    </div>
+    <div class="bg-block" style="background: #04242D; color: #FFFFFF;">
+      <div class="label" style="color: var(--coral);">DARK TEAL · #04242D</div>
+      <div class="desc" style="color: rgba(245,245,247,0.78);">Hero bands, footers, FlightPlan section dividers, intentional drama. Always with white / coral text.</div>
+    </div>
+
+    <h3>Rotation</h3>
+    <p style="font-size: 9.5pt;">A document that rotates <code>WHITE → OFFWHITE → DARK TEAL → WHITE</code> feels Stratos without any other styling work. Don't add a fifth background.</p>
+
+    <h3>Page structure</h3>
+    <p style="font-size: 9.5pt;">All branded PDFs are 8.5 × 11 in (US Letter) with 0.7in horizontal margins (Playbook) or 0.85in (Simple — more generous, reads more editorial). Content padding starts 0.55in from the top (Playbook cover) or 0.85in (Simple). Footers absolute-positioned at the bottom with a 1pt hairline rule above on Simple docs.</p>
+
+    <div class="callout" style="margin-top: 14pt;">
+      <div class="label">Source of truth</div>
+      The live homepage at stratosedge.ai and the FlightPlan deliverables. If anything in this guide conflicts with what the site actually does, the homepage wins — this guide is updated to match.
+    </div>
+  </div>
+  <div class="page-footer"><span>stratosedge.ai</span><span>Page 8</span></div>
+</div>
+
+</body>
+</html>

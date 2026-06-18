@@ -1,0 +1,12 @@
+{
+  "name": "brand-media",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Stratos Edge brand and media assets",
+  "scripts": {
+    "render": "node scripts/render-pdfs.mjs"
+  },
+  "devDependencies": {
+    "playwright": "^1.55.0"
+  }
+}
