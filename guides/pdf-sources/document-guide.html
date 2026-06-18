@@ -309,7 +309,7 @@
   <div class="page-footer"><span>stratosedge.ai</span><span>Page 4</span></div>
 </div>
 
-<!-- ═══════ Page 5 — CHOOSER + LAYOUT ═══════ -->
+<!-- ═══════ Page 5 — PROFILE CHOOSER ═══════ -->
 <div class="page">
   <div class="page-header">
     <span class="wordmark">STRATOS <span class="sep"></span><span class="edge">EDGE</span></span>
@@ -334,8 +334,25 @@
       <tr><td>FlightPlan deliverable</td><td class="k">Its own thing — Playbook patterns at max intensity</td></tr>
     </table>
 
-    <h2 style="margin-top: 20pt;">Page geometry<span class="coral">.</span></h2>
+    <div class="callout" style="margin-top: 18pt;">
+      <div class="label">When in doubt</div>
+      <strong>Default to Simple.</strong> Playbook is the exception, not the rule. If most of your documents look like Playbooks, your Playbooks stop reading as special.
+    </div>
+  </div>
+  <div class="page-footer"><span>stratosedge.ai</span><span>Page 5</span></div>
+</div>
 
+<!-- ═══════ Page 6 — PAGE GEOMETRY ═══════ -->
+<div class="page">
+  <div class="page-header">
+    <span class="wordmark">STRATOS <span class="sep"></span><span class="edge">EDGE</span></span>
+    <span class="meta">Document Guide</span>
+  </div>
+  <div class="page-content">
+    <h2>Page geometry<span class="coral">.</span></h2>
+    <p class="lead">Dimensions, margins, and section sizing for both profiles.</p>
+
+    <h3 style="margin-top: 14pt;">PDF (print) geometry</h3>
     <table>
       <tr><th></th><th>Stratos Simple</th><th>Stratos Playbook</th></tr>
       <tr><td class="k">Page size</td><td>8.5 × 11 in (US Letter)</td><td>8.5 × 11 in (US Letter)</td></tr>
@@ -346,15 +363,17 @@
       <tr><td class="k">Section background</td><td>White or Cream (one)</td><td>Rotates: White → Off-white → Dark teal</td></tr>
     </table>
 
-    <h3>On screen (HTML rendering)</h3>
-    <ul style="font-size: 9.5pt;">
-      <li><code>max-width: 760px</code> for body-text sections</li>
-      <li><code>max-width: 1280px</code> for hero sections and content with photos / grids</li>
-      <li>Horizontal padding: <code>px-6 md:px-12 lg:px-16 xl:px-24</code> (Tailwind)</li>
-      <li>Section padding: <code>clamp(5rem, 10vh, 7rem)</code> Simple · <code>clamp(6rem, 12vh, 8rem)</code> Playbook hero</li>
-    </ul>
+    <h3>On-screen (HTML rendering)</h3>
+    <table>
+      <tr><th>Element</th><th>Spec</th></tr>
+      <tr><td class="k">Body-text section max-width</td><td><code>max-width: 760px</code></td></tr>
+      <tr><td class="k">Hero / photo / grid max-width</td><td><code>max-width: 1280px</code></td></tr>
+      <tr><td class="k">Horizontal padding (Tailwind)</td><td><code>px-6 md:px-12 lg:px-16 xl:px-24</code></td></tr>
+      <tr><td class="k">Section padding — Simple</td><td><code>clamp(5rem, 10vh, 7rem)</code></td></tr>
+      <tr><td class="k">Section padding — Playbook hero</td><td><code>clamp(6rem, 12vh, 8rem)</code></td></tr>
+    </table>
   </div>
-  <div class="page-footer"><span>stratosedge.ai</span><span>Page 5</span></div>
+  <div class="page-footer"><span>stratosedge.ai</span><span>Page 6</span></div>
 </div>
 
 </body>
