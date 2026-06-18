@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Stratos Edge — Documentation Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@200;300;400;500;600;700&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  @page { size: letter; margin: 0.85in 0.7in 0.95in 0.7in; }
+  @page :first { margin: 0; }
+  @page cover { margin: 0; }
+
+  :root {
+    --ink: #04242D;
+    --muted: rgba(4, 36, 45, 0.55);
+    --hairline: rgba(4, 36, 45, 0.12);
+    --hairline-soft: rgba(4, 36, 45, 0.08);
+    --coral: #FF6B4A;
+    --coral-end: #FF8A6B;
+    --cream: #F2F0E9;
+    --offwhite: #F8F8F8;
+    --dark: #04242D;
+  }
+
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    font-family: 'Lora', Georgia, 'Times New Roman', serif;
+    color: var(--ink);
+    font-size: 10.5pt;
+    line-height: 1.55;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  h1, h2, h3, h4, .head { font-family: 'Work Sans', -apple-system, sans-serif; color: var(--ink); margin: 0; }
+  h1 { font-weight: 200; font-size: 38pt; letter-spacing: -0.03em; line-height: 1.05; }
+  h2 { font-weight: 400; font-size: 19pt; letter-spacing: -0.02em; line-height: 1.2; margin-bottom: 0.5em; }
+  h3 { font-weight: 500; font-size: 11pt; letter-spacing: 0; line-height: 1.3; margin-top: 1.4em; margin-bottom: 0.4em; }
+  p  { margin: 0.4em 0 0.9em 0; }
+  .coral { color: var(--coral); }
+  .lead { font-size: 11.5pt; line-height: 1.5; color: var(--ink); }
+  .meta { font-family: 'Work Sans', sans-serif; font-size: 7pt; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); }
+  .eyebrow { font-family: 'Work Sans', sans-serif; font-size: 7.5pt; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--coral); }
+  .wordmark { font-family: 'Work Sans', sans-serif; font-size: 8.5pt; font-weight: 500; letter-spacing: 0.25em; text-transform: uppercase; }
+  .wordmark .sep { display: inline-block; width: 1px; height: 9pt; vertical-align: middle; margin: 0 6pt; background: var(--muted); }
+  .wordmark .edge { font-weight: 300; letter-spacing: 0.22em; opacity: 0.85; }
+
+  .page-header { position: running(pageheader); }
+  .page-footer { position: running(pagefooter); }
+  @page { @top-left { content: element(pageheader); } @bottom-right { content: counter(page); font-family: 'Work Sans', sans-serif; font-size: 7pt; font-weight: 500; letter-spacing: 0.18em; color: rgba(4,36,45,0.55); } @bottom-left { content: element(pagefooter); } }
+  @page :first { @top-left { content: none; } @bottom-right { content: none; } @bottom-left { content: none; } }
+
+  .header-bar { display: flex; justify-content: space-between; align-items: center; font-family: 'Work Sans', sans-serif; }
+  .footer-bar { font-family: 'Work Sans', sans-serif; font-size: 7pt; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); }
+
+  /* Cover */
+  .cover {
+    page: cover;
+    width: 8.5in; height: 11in;
+    background: var(--dark);
+    color: #FFFFFF;
+    padding: 0.75in 0.75in 0.65in 0.75in;
+    position: relative;
+    page-break-after: always;
+    overflow: hidden;
+  }
+  .cover .top { display: flex; justify-content: space-between; align-items: flex-start; }
+  .cover .wordmark { color: #FFFFFF; }
+  .cover .wordmark .sep { background: rgba(255,255,255,0.30); }
+  .cover .meta-top { font-family: 'Work Sans', sans-serif; font-size: 7pt; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(255,255,255,0.55); }
+  .cover .hero { position: absolute; left: 0.75in; right: 0.75in; top: 5.6in; }
+  .cover .eyebrow-cover { font-family: 'Work Sans', sans-serif; font-size: 8pt; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase; color: var(--coral); margin-bottom: 14pt; display: block; }
+  .cover h1 { color: #FFFFFF; font-weight: 200; font-size: 56pt; letter-spacing: -0.03em; line-height: 1; }
+  .cover .subtitle { font-family: 'Lora', serif; font-size: 12pt; color: rgba(255,255,255,0.70); margin-top: 22pt; max-width: 5in; line-height: 1.5; }
+  .cover .accent-bar { width: 44pt; height: 3pt; border-radius: 2pt; background: linear-gradient(135deg, var(--coral) 0%, var(--coral-end) 100%); margin-top: 28pt; }
+  .cover .bottom { position: absolute; left: 0.75in; right: 0.75in; bottom: 0.65in; display: flex; justify-content: space-between; align-items: baseline; font-family: 'Work Sans', sans-serif; font-size: 7.5pt; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(255,255,255,0.40); }
+
+  section { page-break-before: always; padding-top: 0.15in; }
+  section.first { page-break-before: avoid; }
+
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 18pt; }
+
+  table { width: 100%; border-collapse: collapse; font-size: 9.5pt; margin: 8pt 0 14pt 0; }
+  th, td { padding: 7pt 8pt; text-align: left; border-bottom: 1px solid var(--hairline-soft); vertical-align: top; font-family: 'Lora', serif; }
+  th { font-family: 'Work Sans', sans-serif; font-size: 7.5pt; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--coral); border-bottom: 1px solid var(--coral); }
+  td.k { font-family: 'Work Sans', sans-serif; font-weight: 500; color: var(--ink); }
+  td.mono { font-family: 'Work Sans', sans-serif; font-size: 9pt; color: var(--ink); }
+
+  code, .mono { font-family: 'Work Sans', sans-serif; font-size: 9pt; background: var(--offwhite); padding: 1pt 5pt; border-radius: 3pt; color: var(--ink); }
+  .accent-bar { width: 44pt; height: 3pt; border-radius: 2pt; background: linear-gradient(135deg, var(--coral) 0%, var(--coral-end) 100%); margin: 14pt 0; }
+
+  .callout { border-left: 3pt solid var(--coral); padding: 8pt 14pt; background: #FFF8F5; margin: 10pt 0 14pt 0; font-size: 10pt; }
+  .callout .label { font-family: 'Work Sans', sans-serif; font-size: 7pt; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--coral); margin-bottom: 3pt; }
+
+  .quote-block { background: var(--offwhite); border-left: 3pt solid var(--coral); padding: 12pt 16pt; margin: 8pt 0; }
+  .quote-block .line { font-family: 'Lora', serif; font-size: 11.5pt; line-height: 1.5; color: var(--ink); margin: 3pt 0; font-style: italic; }
+
+  ul { margin: 0.3em 0 0.9em 1em; padding: 0; }
+  li { margin: 0.3em 0; }
+
+  .rule-num {
+    display: inline-block;
+    width: 22pt; height: 22pt;
+    border-radius: 50%;
+    background: var(--coral);
+    color: #FFFFFF;
+    font-family: 'Work Sans', sans-serif;
+    font-weight: 500;
+    font-size: 10pt;
+    text-align: center;
+    line-height: 22pt;
+    margin-right: 8pt;
+    vertical-align: middle;
+  }
+  .rule-row { margin: 14pt 0; }
+  .rule-row .title { font-family: 'Work Sans', sans-serif; font-weight: 500; font-size: 11.5pt; color: var(--ink); vertical-align: middle; }
+  .rule-row .desc { font-family: 'Lora', serif; font-size: 10pt; color: var(--ink); margin-top: 4pt; margin-left: 30pt; line-height: 1.5; }
+
+  .profile-card {
+    border: 1px solid var(--hairline-soft);
+    border-radius: 6pt;
+    overflow: hidden;
+    margin-bottom: 14pt;
+  }
+  .profile-card .pcap {
+    background: var(--offwhite);
+    padding: 12pt 16pt;
+    border-bottom: 1px solid var(--hairline-soft);
+  }
+  .profile-card .pcap .eyebrow { display: block; margin-bottom: 4pt; }
+  .profile-card .pcap .name { font-family: 'Work Sans', sans-serif; font-weight: 500; font-size: 16pt; color: var(--ink); }
+  .profile-card .pcap .name .coral { color: var(--coral); }
+  .profile-card .pcap .tag { font-family: 'Lora', serif; font-style: italic; font-size: 10.5pt; color: var(--muted); margin-top: 4pt; }
+  .profile-card .pbody { padding: 14pt 16pt; }
+  .profile-card .pbody h4 { font-family: 'Work Sans', sans-serif; font-weight: 600; font-size: 9pt; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink); margin: 8pt 0 4pt 0; }
+  .profile-card .pbody h4:first-child { margin-top: 0; }
+
+  .vocab-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12pt; margin: 8pt 0; }
+  .vocab-grid .col { background: var(--offwhite); padding: 12pt 14pt; border-radius: 4pt; }
+  .vocab-grid .col h4 { font-family: 'Work Sans', sans-serif; font-weight: 600; font-size: 8pt; letter-spacing: 0.12em; text-transform: uppercase; margin: 0 0 6pt 0; }
+  .vocab-grid .col.use h4 { color: var(--coral); }
+  .vocab-grid .col.avoid h4 { color: var(--muted); }
+  .vocab-grid .col p { font-family: 'Lora', serif; font-size: 9.5pt; margin: 0; line-height: 1.55; }
+</style>
+</head>
+<body>
+
+<div class="page-header header-bar">
+  <span class="wordmark">STRATOS <span class="sep"></span><span class="edge">EDGE</span></span>
+  <span class="meta">Documentation Guide</span>
+</div>
+<div class="page-footer footer-bar">stratosedge.ai</div>
+
+<!-- ═══════ COVER ═══════ -->
+<div class="cover">
+  <div class="top">
+    <span class="wordmark">STRATOS <span class="sep"></span><span class="edge">EDGE</span></span>
+    <span class="meta-top">Internal Reference</span>
+  </div>
+  <div class="hero">
+    <span class="eyebrow-cover">Documentation</span>
+    <h1>Documentation Guide<span class="coral">.</span></h1>
+    <p class="subtitle">Voice, doc profiles, and how to write &amp; format Stratos Edge materials.</p>
+    <div class="accent-bar"></div>
+  </div>
+  <div class="bottom">
+    <span>stratosedge.ai</span>
+    <span>© 2026 Stratos Edge LLC</span>
+  </div>
+</div>
+
+<!-- ═══════ 1. Voice ═══════ -->
+<section class="first">
+  <h2>Voice<span class="coral">.</span></h2>
+  <p class="lead">Calm, declarative, anti-hype. Stratos Edge talks like a grown-up advisor to boards and C-suites in regulated industries. Not a vendor pitching.</p>
+
+  <h3 class="eyebrow" style="color:var(--coral); margin-top: 16pt;">The five rules</h3>
+
+  <div class="rule-row">
+    <span class="rule-num">1</span><span class="title">Statements, not claims.</span>
+    <div class="desc">Every sentence should read like something true, not something being argued. "Most AI initiatives fail" works. "We help you avoid failure!" does not.</div>
+  </div>
+  <div class="rule-row">
+    <span class="rule-num">2</span><span class="title">Strategy before technology.</span>
+    <div class="desc">This is the thesis. Every doc should reinforce that getting AI right is a strategy problem first. "Stop buying AI tools. Start building AI capability."</div>
+  </div>
+  <div class="rule-row">
+    <span class="rule-num">3</span><span class="title">Short and declarative beats long and qualified.</span>
+    <div class="desc">Three short sentences beat one comma-laden one. The homepage's strongest lines are fragments: "We walk alongside you." / "These aren't technology failures. They're strategy failures."</div>
+  </div>
+  <div class="rule-row">
+    <span class="rule-num">4</span><span class="title">No hype words.</span>
+    <div class="desc">Avoid: cutting-edge, revolutionary, transformative (as marketing adjective), best-in-class, world-class, unleash, supercharge, AI-powered (as a brag), seamless, robust, leverage (verb), synergy, paradigm. If a word would fit on a 2017 SaaS sales deck, cut it.</div>
+  </div>
+  <div class="rule-row">
+    <span class="rule-num">5</span><span class="title">One coral period per moment.</span>
+    <div class="desc">In writing terms: don't end every paragraph with a punchy declaration. Save the big declarative finish for the moment that actually deserves it.</div>
+  </div>
+</section>
+
+<!-- ═══════ 2. Sound of the brand ═══════ -->
+<section>
+  <h2>Sound of the brand<span class="coral">.</span></h2>
+  <p class="lead">These are the homepage's actual voice samples. Match this register, not "marketing voice."</p>
+
+  <div class="quote-block">
+    <div class="line">"AI advisory for organizations where getting it wrong isn't an option."</div>
+    <div class="line">"What we help you do."</div>
+    <div class="line">"We walk alongside you."</div>
+    <div class="line">"FlightPlan™ is how we do it."</div>
+    <div class="line">"However far along you are, you leave more confident in what's next."</div>
+    <div class="line">"These aren't technology failures. They're strategy failures — and they're preventable."</div>
+    <div class="line">"Stop buying AI tools. Start building AI capability."</div>
+    <div class="line">"No pitch deck. No pressure. Just a conversation."</div>
+  </div>
+
+  <h3 style="margin-top: 22pt;">Vocabulary</h3>
+  <div class="vocab-grid">
+    <div class="col use">
+      <h4>Use</h4>
+      <p>advisor, advisory, vendor-neutral, mid-market, regulated industries, board-ready, readiness, strategy, capability, ecosystem, partner, walk alongside, no cost to you.</p>
+    </div>
+    <div class="col avoid">
+      <h4>Avoid</h4>
+      <p>solutions provider (we're an advisor), AI-powered (we don't build AI), cutting-edge, disrupt, game-changer, deep dive, dive in (any dive metaphor), wheelhouse, circle back.</p>
+    </div>
+  </div>
+
+  <h3>Capitalization</h3>
+  <ul>
+    <li><strong>FlightPlan™</strong> — camelCase, trademark on first major use per doc.</li>
+    <li><strong>Stratos Edge</strong> — two words, both capitalized.</li>
+    <li>Industries are lowercase in body text ("healthcare," "financial services") unless leading a heading.</li>
+  </ul>
+
+  <h3>Headline style</h3>
+  <ul>
+    <li>End with a coral period (visually) — see the Brand Guide.</li>
+    <li>Sentence case, not Title Case. "Who's behind it" not "Who's Behind It."</li>
+    <li>Most homepage headlines are 2–6 words. Match that.</li>
+    <li>Don't pose questions you immediately answer — make the statement instead.</li>
+  </ul>
+
+  <h3>Tense and person</h3>
+  <ul>
+    <li>"We" for the company. Never "I" in a document.</li>
+    <li>Present tense for what Stratos does. Past for what's happened. Future tense should be rare.</li>
+  </ul>
+</section>
+
+<!-- ═══════ 3. Document profiles ═══════ -->
+<section>
+  <h2>Document profiles<span class="coral">.</span></h2>
+  <p class="lead">Two profiles cover essentially all Stratos documents. Pick by intent, not by audience.</p>
+
+  <div class="profile-card">
+    <div class="pcap">
+      <span class="eyebrow">The default</span>
+      <span class="name">Stratos Simple<span class="coral">.</span></span>
+      <div class="tag">Clean, light, Stratos-identified. Used for almost everything.</div>
+    </div>
+    <div class="pbody">
+      <p>Most documents are this. Light-backgrounded, Stratos-identified, professionally formatted, easy to read. Not selling anything. Used for confirmations, intro letters, summary docs, internal memos, working notes, explainers, short briefs.</p>
+
+      <h4>Visual recipe</h4>
+      <ul>
+        <li>Background: <code>#FFFFFF</code> (default) or <code>#F2F0E9</code> (warm editorial)</li>
+        <li>Small <code>STRATOS | EDGE</code> wordmark, top of first page, left-aligned</li>
+        <li>Body: Lora 16–18pt, line-height 1.55–1.7, INK <code>#04242D</code></li>
+        <li>Section headings: Work Sans 400, INK, with the coral period</li>
+        <li>Footer: single line of small Lora at MUTED — date, page number, contextual identifier</li>
+      </ul>
+
+      <h4>What this profile is NOT</h4>
+      <ul>
+        <li>No hero cover page. Open straight to the document.</li>
+        <li>No accent bar, no stat strips, no numbered insight blocks. Those are Playbook moves.</li>
+        <li>No dark teal sections.</li>
+        <li>No coral-gradient buttons. CTAs are a single line of coral-period text.</li>
+      </ul>
+
+      <h4>Wording variants (styling identical, footer copy is the only variable)</h4>
+      <table style="margin-top: 6pt; margin-bottom: 0;">
+        <tr><th>Use</th><th>Footer line</th></tr>
+        <tr><td class="k">Internal-facing</td><td class="mono">Stratos Edge · Internal · {date}</td></tr>
+        <tr><td class="k">Client / recipient</td><td class="mono">Stratos Edge · {date} or · stratosedge.ai</td></tr>
+        <tr><td class="k">Public-facing</td><td class="mono">© 2026 Stratos Edge LLC · stratosedge.ai</td></tr>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ 4. Playbook profile ═══════ -->
+<section>
+  <div class="profile-card">
+    <div class="pcap" style="background: var(--dark); border-bottom-color: var(--dark);">
+      <span class="eyebrow" style="color: var(--coral);">The intentional moment</span>
+      <span class="name" style="color: #FFFFFF;">Stratos Playbook<span class="coral">.</span></span>
+      <div class="tag" style="color: rgba(255,255,255,0.65);">Full marketing treatment. Borrows the FlightPlan deliverable language.</div>
+    </div>
+    <div class="pbody">
+      <p>For documents doing real persuasive work: sales playbooks, lead magnets, the agent program opportunity doc, methodology overviews, industry briefs. Borrows the FlightPlan deliverable design language — colorized, sectioned, editorial, dramatic.</p>
+
+      <div class="callout">
+        <div class="label">Use sparingly</div>
+        It's the equivalent of a Stratos hero band — high impact when used, exhausting if everything looks like this.
+      </div>
+
+      <h4>Visual recipe</h4>
+      <ul>
+        <li><strong>Cover page</strong> — full-bleed dark teal <code>#04242D</code>. Small coral eyebrow at top. Large Lora 400 hero title, white, letter-spacing <code>-0.02em</code>. Subtitle in Lora at <code>rgba(245,245,247,0.65)</code>. Wordmark white at bottom corner.</li>
+        <li><strong>Section dividers</strong> — full-bleed dark teal bands between sections, mirroring FlightPlan. Coral eyebrow + large Lora title in white. 2–4 per doc, not on every section.</li>
+        <li><strong>Body sections</strong> — alternate <code>#FFFFFF</code> and <code>#F8F8F8</code> (occasionally <code>#F2F0E9</code> for editorial). Work Sans 400 headings with coral period. Lora body.</li>
+        <li><strong>Components available</strong> — accent bar under cover title, eyebrow labels above sections, stat strips, pull quotes, numbered insight blocks. Use 1–2 component types per doc — not all of them.</li>
+        <li><strong>CTA</strong> — end with a single coral-gradient button and a one-line action statement.</li>
+        <li><strong>Footer on body pages</strong> — small Work Sans line, <code>Stratos Edge · stratosedge.ai · page N</code>. Substitute "Internal" for internal-only playbooks. Don't use "Confidential" unless the document genuinely warrants it.</li>
+      </ul>
+
+      <h4>When to choose Playbook over Simple</h4>
+      <ul>
+        <li>The reader is supposed to feel something (interest, urgency, conviction) by the end.</li>
+        <li>The doc is going to be printed, screenshotted, or shared as a marketing artifact.</li>
+        <li>The doc is making an argument, not delivering information.</li>
+      </ul>
+      <p>Everything else is Simple.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ 5. Components ═══════ -->
+<section>
+  <h2>Components<span class="coral">.</span></h2>
+  <p class="lead">Reusable visual elements that appear inside documents. All optional — pick what serves the content.</p>
+
+  <h3>Pull quote</h3>
+  <p>A short, bold statement that interrupts body flow. One per major section, max two per Playbook doc.</p>
+  <div class="quote-block">
+    <div class="line">They just started. And they started with a plan.</div>
+  </div>
+  <p style="font-size: 9pt; color: var(--muted);">4pt CORAL left border · CREAM or OFFWHITE bg · Lora 400 italic, ~15pt, INK</p>
+
+  <h3>Emphasis line</h3>
+  <p>A two-line statement where the second line carries the punch.</p>
+  <div class="type-sample" style="background: #FFFFFF; border: 1px solid var(--hairline-soft); padding: 16pt 18pt; border-radius: 4pt; margin: 8pt 0 6pt 0;">
+    <div style="font-family: 'Work Sans', sans-serif; font-weight: 300; font-size: 16pt; line-height: 1.3;">The real problem isn't AI.</div>
+    <div style="font-family: 'Work Sans', sans-serif; font-weight: 500; font-size: 16pt; line-height: 1.3; color: var(--coral);">It's the plan.</div>
+  </div>
+  <p style="font-size: 9pt; color: var(--muted);">Work Sans 300 throughout, punch phrase in coral at weight 500</p>
+
+  <h3>Stat strip</h3>
+  <p>Horizontal row of 2–4 large numbers with small labels beneath. Anchors an argument with data.</p>
+  <div style="display: flex; gap: 0; margin: 8pt 0 6pt 0; border: 1px solid var(--hairline-soft); border-radius: 4pt; overflow: hidden;">
+    <div style="flex: 1; padding: 16pt; text-align: center; border-right: 1px solid var(--hairline-soft);">
+      <div style="font-family: 'Work Sans', sans-serif; font-weight: 200; font-size: 32pt; color: var(--coral); line-height: 1;">95%</div>
+      <div style="font-family: 'Work Sans', sans-serif; font-weight: 500; font-size: 7pt; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin-top: 6pt;">of AI pilots fail</div>
+    </div>
+    <div style="flex: 1; padding: 16pt; text-align: center; border-right: 1px solid var(--hairline-soft);">
+      <div style="font-family: 'Work Sans', sans-serif; font-weight: 200; font-size: 32pt; color: var(--coral); line-height: 1;">70%</div>
+      <div style="font-family: 'Work Sans', sans-serif; font-weight: 500; font-size: 7pt; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin-top: 6pt;">are governance</div>
+    </div>
+    <div style="flex: 1; padding: 16pt; text-align: center;">
+      <div style="font-family: 'Work Sans', sans-serif; font-weight: 200; font-size: 32pt; color: var(--coral); line-height: 1;">97%</div>
+      <div style="font-family: 'Work Sans', sans-serif; font-weight: 500; font-size: 7pt; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin-top: 6pt;">uses AI poorly</div>
+    </div>
+  </div>
+  <p style="font-size: 9pt; color: var(--muted);">Numbers: Work Sans 200, ~32pt, CORAL · Labels: Work Sans 500, ~7pt UPPERCASE</p>
+
+  <h3>Numbered insight block</h3>
+  <p>A numbered argument or principle, with the number as a large, low-opacity background mark. Playbook-only.</p>
+  <div style="display: flex; align-items: flex-start; gap: 14pt; margin: 8pt 0 6pt 0; padding: 12pt 0;">
+    <div style="font-family: 'Work Sans', sans-serif; font-weight: 700; font-size: 38pt; color: var(--coral); opacity: 0.28; line-height: 1; flex: 0 0 auto;">01</div>
+    <div style="padding-top: 4pt;">
+      <div style="font-family: 'Work Sans', sans-serif; font-weight: 600; font-size: 12pt; color: var(--ink); margin-bottom: 3pt;">Section title goes here.</div>
+      <div style="font-family: 'Lora', serif; font-size: 10pt; color: var(--muted); line-height: 1.55;">Body text follows. Used for numbered arguments in Playbook docs (e.g., "Three things every AI strategy needs").</div>
+    </div>
+  </div>
+
+  <h3>Accent bar</h3>
+  <p>Short coral gradient bar — divider, or underline beneath a cover title.</p>
+  <div class="accent-bar"></div>
+  <p style="font-size: 9pt; color: var(--muted);">44pt × 3pt · radius 2pt · <code>linear-gradient(135deg, #FF6B4A, #FF8A6B)</code></p>
+</section>
+
+<!-- ═══════ 6. Layout & chooser ═══════ -->
+<section>
+  <h2>Layout<span class="coral">.</span></h2>
+
+  <h3>Page geometry</h3>
+  <ul>
+    <li>US Letter (8.5 × 11 in) for PDFs</li>
+    <li>Horizontal margins: 0.7in (Playbook) or 0.85in (Simple — more generous, reads more editorial)</li>
+    <li>First-page top padding: 0.55in (Playbook cover) or 0.85in (Simple)</li>
+    <li>Footer: absolute-positioned, 0.5in above edge; 1pt HAIRLINE rule above on Simple, none on Playbook dark sections</li>
+  </ul>
+
+  <h3>On screen (HTML rendering of a doc)</h3>
+  <ul>
+    <li><code>max-width: 760px</code> for body-text sections (matches About / FAQ pattern)</li>
+    <li><code>max-width: 1280px</code> for hero sections, photos, grids (matches Homepage)</li>
+    <li>Horizontal padding: <code>px-6 md:px-12 lg:px-16 xl:px-24</code></li>
+    <li>Section padding: <code>clamp(5rem, 10vh, 7rem)</code> Simple · <code>clamp(6rem, 12vh, 8rem)</code> Playbook hero</li>
+  </ul>
+
+  <h2 style="margin-top: 28pt;">Choosing a profile<span class="coral">.</span></h2>
+  <table>
+    <tr><th>Document</th><th>Profile</th></tr>
+    <tr><td>Email confirmation page</td><td class="k">Simple</td></tr>
+    <tr><td>Intro letter to a prospect</td><td class="k">Simple</td></tr>
+    <tr><td>Summary of a discovery conversation</td><td class="k">Simple</td></tr>
+    <tr><td>Working memo to the team</td><td class="k">Simple (internal)</td></tr>
+    <tr><td>Short explainer for a recipient</td><td class="k">Simple</td></tr>
+    <tr><td>Brand guide / docs (like this file)</td><td class="k">Simple</td></tr>
+    <tr><td>Agent program overview PDF</td><td class="k">Playbook</td></tr>
+    <tr><td>Sales Playbook</td><td class="k">Playbook</td></tr>
+    <tr><td>Lead magnet / 4 Decisions PDF</td><td class="k">Playbook</td></tr>
+    <tr><td>LinkedIn Playbook</td><td class="k">Playbook</td></tr>
+    <tr><td>FlightPlan deliverable</td><td class="k">Its own thing (Playbook patterns at max intensity)</td></tr>
+  </table>
+
+  <div class="callout" style="margin-top: 16pt;">
+    <div class="label">When in doubt</div>
+    <strong>Simple.</strong> It's almost always the right call. Playbook is the exception.
+  </div>
+</section>
+
+<!-- ═══════ 7. What this guide is not ═══════ -->
+<section>
+  <h2>What this guide is not<span class="coral">.</span></h2>
+  <ul>
+    <li><strong>Not a visual identity reference.</strong> For palette, fonts, marks — see the Brand Guide.</li>
+    <li><strong>Not a tone for spoken communication.</strong> Jeff's emails and Micah's calls are warmer and more personal than written brand voice should be. This guide is for documents.</li>
+    <li><strong>Not legal / regulatory copy guidance.</strong> Terms of service, privacy policy, the Agent Program Terms use legal voice (precise, comprehensive, slightly stiff). That's correct for those documents — a different genre, not a Stratos brand exception.</li>
+  </ul>
+  <div class="accent-bar" style="margin-top: 22pt;"></div>
+</section>
+
+</body>
+</html>
