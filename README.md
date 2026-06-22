@@ -19,7 +19,8 @@ Brand identity, document standards, and media assets for Stratos Edge.
 │  │  ├─ stratos-logo-black.png
 │  │  ├─ stratos-logo-white.png
 │  │  ├─ stratos-lettermark-black.png
-│  │  └─ stratos-lettermark-white.png
+│  │  ├─ stratos-lettermark-white.png
+│  │  └─ stratos-favicon.png
 │  └─ social/
 │     ├─ stratos-profile.png
 │     └─ linkedin/
@@ -50,6 +51,7 @@ The full wordmark and the compact lettermark, black and white variants.
 | `stratos-logo-white.png` | Wordmark on dark backgrounds. |
 | `stratos-lettermark-black.png` | Compact mark on light. Use where the full wordmark won't fit. |
 | `stratos-lettermark-white.png` | Compact mark on dark. |
+| `stratos-favicon.png` | Lettermark in a rounded-square frame on off-white. Used as the website favicon. 500×500. |
 
 ### `brand-assets/social/`
 
