@@ -32,6 +32,7 @@ The whole brand sits on a small palette. Use only these.
 | Hairline | `rgba(4, 36, 45, 0.08)` | Card borders, section dividers, accordion separators. |
 | Coral gradient | `linear-gradient(135deg, #FF6B4A 0%, #FF8A6B 100%)` | CTA buttons only. Never headlines, never large fills. |
 | Coral tint | `#FFF8F5` | Faint warm background for highlighted callouts. |
+| **TEAL** | `#1D6772` | The working teal (added 2026-08-10) — INK's own hue at mid-tone. Second data series next to coral, diagram fills, icon strokes, the de-emphasized column in a comparison. Light-surface color only: passes AA for text on white/offwhite/cream; never a background, never text on INK. |
 | Status — live | `#0F9D6E` | "Live / Confidential" dot. |
 | Status — preview | `#E6A61C` | "Admin preview / Draft" dot. |
 
@@ -189,6 +190,18 @@ Small filled circle (6×6px) paired with a small Work Sans uppercase label. Used
 | DARK TEAL | `#04242D` | Hero bands, footers, FlightPlan section dividers, intentional drama. Always with white / coral text. |
 
 A document that rotates `WHITE → OFFWHITE → DARK TEAL → WHITE` feels Stratos without any other styling work. Don't add a fifth background.
+
+### Carousel surfaces (LinkedIn document posts — added 2026-08-10)
+
+Carousels apply the section-rhythm rule slide by slide, on three surfaces:
+
+| Surface | Role |
+|---|---|
+| **CORAL** `#FF6B4A` | The cover, by default — the billboard slide that competes in the feed. This is the one sanctioned large coral fill in the brand, capped at **one slide per deck** (as the cover, or as a mid-deck punch when the cover is ink or a photograph). Solid coral only, never the gradient. On this surface the terminal-period device and eyebrow switch to INK, and text is white. |
+| **CREAM** `#F2F0E9` | The interior — every reading slide. INK text with opacity-driven hierarchy, coral accents as on any light page. |
+| **INK** `#04242D` | The close (dark, like the site's footer), the mid-deck beat change, and the scrim over a photograph cover. |
+
+Everything else holds on every surface: the terminal period, one coral lead element per slide (eyebrow or accent bar), the wordmark footer, Work Sans / Lora. The "more than one coral per visible area" rule is unchanged — a coral *surface* is the area, not a mark on it.
 
 ---
 
