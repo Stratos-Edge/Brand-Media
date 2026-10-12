@@ -166,16 +166,16 @@ Two colorways for the two backgrounds.
 
 Compact mark for tight contexts where the full wordmark won't fit (favicon, app icon, profile photo, watermark). Carries the signature coral period device. On the sky by default (`brand-assets/core/stratos-favicon.png`, `brand-assets/social/stratos-profile.png`).
 
-Four drawings exist in the media template (`npm run media` renders all four for review; `LETTERMARK=<name> npm run media -- --final` exports the chosen one):
+**The chosen drawing is `wordmark`** (12 Oct 2026): the S cut from the wordmark itself, so the favicon and the profile avatar are the same letterform as `STRATOS`. Four drawings exist in the media template (`npm run media` renders all four for review; `LETTERMARK=wordmark npm run media -- --final` exports the chosen one):
 
 | Name | What it is |
 |---|---|
-| `serif` | A Source Serif 4 italic S with the coral stop. The drawing behind the 2026 favicon. |
+| `serif` | A Source Serif 4 italic S with the coral stop. The drawing behind the August 2026 favicon; retired. |
 | `wordmark` | The S cut from the wordmark itself, with the coral stop. The same letterform as `STRATOS`. |
 | `monogram` | `S | E` from the wordmark, with its divider, stop after the E. |
 | `sans` | A Work Sans light S with the coral stop, the hero headline's own weight. |
 
-The older black and white lettermark PNGs in `brand-assets/core/` are the serif drawing on a transparent ground.
+The older black and white lettermark PNGs (the serif drawing on a transparent ground) are kept in `legacy/lettermark/`.
 
 ---
 

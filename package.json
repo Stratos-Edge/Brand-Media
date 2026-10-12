@@ -4,7 +4,6 @@
   "private": true,
   "description": "Stratos Edge brand and media assets",
   "scripts": {
-    "render": "node scripts/render-pdfs.mjs",
     "media": "node scripts/brand-media.mjs"
   },
   "devDependencies": {

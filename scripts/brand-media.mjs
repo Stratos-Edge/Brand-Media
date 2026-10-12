@@ -28,7 +28,7 @@ const LETTERMARK = process.env.LETTERMARK ?? "serif";
 // id, CSS width, CSS height, device scale, final file name (relative to brand-assets/), note.
 const BOARDS = [
   ["sharing-image", 1200, 630, 2, "social/sharing-image.png", "Sharing image for links, 2400x1260 (1.91:1), 100px clear margins"],
-  ["linkedin-personal-1-confidence", 1584, 396, 1, "social/linkedin/personal-1-confidence.png", "Confidence before technology."],
+  ["linkedin-personal-1-confidence", 1584, 396, 1, null, "Confidence before technology. (review only; the chosen set carries the website)"],
   ["mock-personal-1-confidence", 1128, 695, 1, null, "Mockup"],
   ["linkedin-personal-2-confidence-website", 1584, 396, 1, "social/linkedin/personal-2-confidence-website.png", "Confidence before technology. stratosedge.ai"],
   ["mock-personal-2-confidence-website", 1128, 695, 1, null, "Mockup"],
