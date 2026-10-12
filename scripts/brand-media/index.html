@@ -102,12 +102,12 @@
   };
 
   const boards = {
-    'sharing-image': (w, h) => `<div class="board" style="width:${w}px;height:${h}px;padding:${h * .12}px ${w * .09}px ${h * .1}px;display:flex;flex-direction:column;align-items:center;justify-content:space-between;text-align:center">${sky}
+    // Sharing image: wordmark, the one-liner with the sentence, the site; equal gaps, equal margins top and bottom.
+    'sharing-image': (w, h) => `<div class="board" style="width:${w}px;height:${h}px;padding:${h * .115}px ${w * .09}px;display:flex;flex-direction:column;align-items:center;justify-content:space-between;text-align:center">${sky}
       <div class="mark mask" style="width:${w * .2}px"></div>
-      <div><p class="eyebrow" style="font-size:${h * .028}px;margin-bottom:${h * .045}px">Stratos Edge</p>
-      <p class="h" style="font-size:${h * .135}px">${H(copy.oneLiner)}</p>
-      <p class="lead" style="font-size:${h * .046}px;max-width:${w * .66}px;margin:${h * .045}px auto 0">${copy.sentence}</p></div>
-      <span class="small" style="font-size:${h * .034}px">${copy.site}</span></div>`,
+      <div><p class="h" style="font-size:${h * .14}px">${H(copy.oneLiner)}</p>
+      <p class="lead" style="font-size:${h * .05}px;max-width:${w * .66}px;margin:${h * .05}px auto 0;text-wrap:balance">${copy.sentence}</p></div>
+      <span class="small" style="font-size:${h * .036}px">${copy.site}</span></div>`,
     ...Object.fromEntries(Object.keys(banners).flatMap((id) => [[`linkedin-${id}`, banners[id]], [`mock-${id}`, (w) => mock(id, w)]])),
 
     // X header 1500x500 and YouTube banner 2560x1440 (safe area 1546x423, centred).
