@@ -23,8 +23,9 @@ Brand identity, document standards, and media assets for Stratos Edge. The compa
 │     ├─ youtube-banner.png             2560x1440, safe area 1546x423
 │     ├─ x-header.png                   1500x500
 │     └─ linkedin/
-│        ├─ personal-*.png              1584x396, six lines to choose from
-│        └─ company-*.png               1128x191, three lines to choose from
+│        ├─ micah-*.png, jeff-*.png      1584x396, four options each
+│        ├─ employee-*.png              1584x396, three options
+│        └─ company-*.png               1128x191, three options
 ├─ scripts/
 │  ├─ brand-media.mjs                   renders the suite (Playwright)
 │  ├─ brand-media/index.html            the one template, on the site's sky wash
@@ -58,6 +59,6 @@ Lettermark options: `serif`, `wordmark`, `monogram`, `sans` (see the guide).
 | `social/sharing-image.png` | Website `public/social-sharing-image.png` (every page's og:image and twitter:image). |
 | `core/stratos-favicon.png` | Website `public/favicon.png`. |
 | `social/stratos-profile.png` | LinkedIn, YouTube, Google Business Profile, directory listings. |
-| `social/linkedin/personal-*.png` | Micah, Jeff and employee profiles. |
+| `social/linkedin/micah-*.png`, `jeff-*.png`, `employee-*.png` | Personal profiles. `npm run media` also renders a profile mockup of each into `review/`. |
 | `social/linkedin/company-*.png` | The LinkedIn company page. |
 | `social/youtube-banner.png` | youtube.com/@stratosedgeai. |

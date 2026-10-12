@@ -62,32 +62,59 @@
     sans: (h) => `<span class="sans-s dotafter" style="font-size:${h * .7}px;--d:${h * .12}px;margin-right:${h * .14}px">S</span>`,
   };
 
-  // Banner lines, in plain names. The personal banner keeps the type right of the profile photo (bottom-left, about 480px wide).
-  const personal = (w, h, inner) => `<div class="board" style="width:${w}px;height:${h}px;display:flex;align-items:center;justify-content:flex-end;padding:0 ${w * .06}px ${h * .1}px 520px">${sky}${inner}</div>`;
-  const company = (w, h, inner) => `<div class="board" style="width:${w}px;height:${h}px;display:flex;align-items:center;justify-content:flex-end;padding:0 ${w * .06}px 0 ${w * .3}px">${sky}${inner}</div>`;
+  // LinkedIn banners. On the profile page the photo (about 160px of a 1128px card) overlaps the bottom-left of the
+  // banner and the "edit" control sits top-right, so the words are centred in the clear zone: right of the photo,
+  // above its top edge. Sizes are fractions of the board so the same layout renders the 1584x396 file and the mockup.
+  const clearZone = (w, h) => `padding:${h * .14}px ${w * .05}px ${h * .22}px ${w * .33}px`;
+  const personal = (w, h, inner) => `<div class="board" style="width:${w}px;height:${h}px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;${clearZone(w, h)}">${sky}${inner}</div>`;
+  const company = (w, h, inner) => `<div class="board" style="width:${w}px;height:${h}px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:${h * .1}px ${w * .05}px ${h * .1}px ${w * .2}px">${sky}${inner}</div>`;
+  const line = (h, text, size) => `<p class="h" style="font-size:${h * size}px;white-space:nowrap">${H(text)}</p>`;
+  const sub = (h, text, size, top) => `<p class="small" style="font-size:${h * size}px;margin-top:${h * top}px;display:block">${text}</p>`;
+  const sentence = (h, size, top, width) => `<p class="lead" style="font-size:${h * size}px;margin-top:${h * top}px;max-width:${width}px">${copy.sentence}</p>`;
+  const roles = { micah: 'Co-founder and Chief Strategy Officer, Stratos Edge', jeff: 'Co-founder, Stratos Edge' };
+
+  const banners = {
+    // Micah
+    'micah-1-confidence': (w, h) => personal(w, h, line(h, copy.confidence, .17)),
+    'micah-2-confidence-role': (w, h) => personal(w, h, line(h, copy.confidence, .16) + sub(h, roles.micah, .062, .06)),
+    'micah-3-what-we-do-confidence': (w, h) => personal(w, h, line(h, copy.oneLiner, .17) + sub(h, copy.confidence, .07, .05)),
+    'micah-4-confidence-website': (w, h) => personal(w, h, line(h, copy.confidence, .16) + sub(h, copy.site, .062, .06)),
+    // Jeff
+    'jeff-1-what-we-do': (w, h) => personal(w, h, line(h, copy.oneLiner, .19)),
+    'jeff-2-what-we-do-sentence': (w, h) => personal(w, h, line(h, copy.oneLiner, .16) + sentence(h, .066, .05, w * .5)),
+    'jeff-3-what-we-do-role': (w, h) => personal(w, h, line(h, copy.oneLiner, .17) + sub(h, roles.jeff, .062, .06)),
+    'jeff-4-website-headline': (w, h) => personal(w, h, `<p class="h" style="font-size:${h * .15}px;max-width:${w * .5}px">${H(copy.hero)}</p>` + sub(h, copy.site, .058, .05)),
+    // Employees
+    'employee-1-what-we-do-website': (w, h) => personal(w, h, line(h, copy.oneLiner, .17) + sub(h, copy.site, .062, .06)),
+    'employee-2-confidence': (w, h) => personal(w, h, line(h, copy.confidence, .16)),
+    'employee-3-wordmark-what-we-do': (w, h) => personal(w, h, `<div class="mark mask" style="width:${w * .22}px"></div>` + `<p class="h" style="font-size:${h * .13}px;margin-top:${h * .09}px;white-space:nowrap">${H(copy.oneLiner)}</p>`),
+    // Company page
+    'company-1-what-we-do-website': (w, h) => company(w, h, `<div style="display:flex;align-items:center;gap:${w * .03}px"><p class="h" style="font-size:${h * .27}px;white-space:nowrap">${H(copy.oneLiner)}</p><span class="small" style="font-size:${h * .105}px;border-left:1px solid rgba(4,36,45,.25);padding-left:${w * .022}px">${copy.site}</span></div>`),
+    'company-2-sentence-website': (w, h) => company(w, h, `<p class="h" style="font-size:${h * .2}px;white-space:nowrap">${H(copy.oneLiner)}</p><p class="lead" style="font-size:${h * .082}px;margin-top:${h * .03}px;white-space:nowrap">${copy.sentence}</p><p class="small" style="font-size:${h * .07}px;margin-top:${h * .03}px">${copy.site}</p>`),
+    'company-3-confidence': (w, h) => company(w, h, line(h, copy.confidence, .27)),
+  };
+
+  // Profile mockups for review: the banner at LinkedIn's display width with a placeholder photo or logo tile and
+  // blank name lines where LinkedIn draws them.
+  const person = `<svg viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="38" r="18" fill="#fff"/><path d="M18 92c4-20 18-30 32-30s28 10 32 30z" fill="#fff"/></svg>`;
+  const mock = (id, w) => {
+    const isCompany = id.startsWith('company');
+    const bh = isCompany ? Math.round(w * 191 / 1128) : Math.round(w * 396 / 1584);
+    const photo = isCompany
+      ? `<div style="position:absolute;left:${w * .022}px;top:${bh - w * .055}px;width:${w * .11}px;height:${w * .11}px;background:#fff;border:1px solid rgba(4,36,45,.12);display:grid;place-items:center"><div class="mark mask" style="width:${w * .085}px"></div></div>`
+      : `<div style="position:absolute;left:${w * .022}px;top:${bh - w * .072}px;width:${w * .144}px;height:${w * .144}px;border-radius:50%;background:#cfd6d8;border:4px solid #fff;box-sizing:border-box;overflow:hidden">${person}</div>`;
+    const lines = `<div style="position:absolute;left:${w * .022}px;top:${bh + w * .085}px;display:grid;gap:${w * .012}px"><div style="width:${w * .19}px;height:${w * .02}px;background:#dfe3e4;border-radius:3px"></div><div style="width:${w * .32}px;height:${w * .014}px;background:#eceeef;border-radius:3px"></div><div style="width:${w * .12}px;height:${w * .012}px;background:#eceeef;border-radius:3px"></div></div>`;
+    return `<div style="position:relative;width:${w}px;height:${bh + w * .17}px;background:#fff;overflow:hidden">${banners[id](w, bh)}${photo}${lines}</div>`;
+  };
 
   const boards = {
-    // The sharing image. Centred, with at least 100px of clear margin on every side at 1200x630, so every platform's
-    // crop of the 1.91:1 card keeps the words.
     'sharing-image': (w, h) => `<div class="board" style="width:${w}px;height:${h}px;padding:${h * .12}px ${w * .09}px ${h * .1}px;display:flex;flex-direction:column;align-items:center;justify-content:space-between;text-align:center">${sky}
       <div class="mark mask" style="width:${w * .2}px"></div>
       <div><p class="eyebrow" style="font-size:${h * .028}px;margin-bottom:${h * .045}px">Stratos Edge</p>
       <p class="h" style="font-size:${h * .135}px">${H(copy.oneLiner)}</p>
       <p class="lead" style="font-size:${h * .046}px;max-width:${w * .66}px;margin:${h * .045}px auto 0">${copy.sentence}</p></div>
       <span class="small" style="font-size:${h * .034}px">${copy.site}</span></div>`,
-
-    // LinkedIn, personal 1584x396.
-    'linkedin-personal-micahs-line': (w, h) => personal(w, h, `<p class="h" style="font-size:${h * .162}px;white-space:nowrap">${H(copy.confidence)}</p>`),
-    'linkedin-personal-what-we-do': (w, h) => personal(w, h, `<p class="h" style="font-size:${h * .2}px">${H(copy.oneLiner)}</p>`),
-    'linkedin-personal-what-we-do-with-sentence': (w, h) => personal(w, h, `<div style="text-align:right"><p class="h" style="font-size:${h * .2}px">${H(copy.oneLiner)}</p><p class="lead" style="font-size:${h * .075}px;margin:${h * .06}px 0 0 auto;max-width:${w * .5}px">${copy.sentence}</p></div>`),
-    'linkedin-personal-website-headline': (w, h) => personal(w, h, `<p class="h" style="font-size:${h * .18}px;max-width:${w * .55}px;text-align:right">${H(copy.hero)}</p>`),
-    'linkedin-personal-wordmark-and-micahs-line': (w, h) => personal(w, h, `<div style="text-align:right"><div class="mark mask" style="width:${w * .26}px"></div><p class="h" style="font-size:${h * .15}px;margin-top:${h * .1}px">${H(copy.confidence)}</p></div>`),
-    'linkedin-personal-wordmark': (w, h) => personal(w, h, `<div class="mark mask" style="width:${w * .3}px"></div>`),
-
-    // LinkedIn, company page 1128x191. The logo tile sits bottom-left.
-    'linkedin-company-what-we-do': (w, h) => company(w, h, `<div style="display:flex;align-items:center;gap:${w * .035}px"> <p class="h" style="font-size:${h * .28}px;white-space:nowrap">${H(copy.oneLiner)}</p><span class="small" style="font-size:${h * .11}px;border-left:1px solid rgba(4,36,45,.25);padding-left:${w * .025}px">${copy.site}</span></div>`),
-    'linkedin-company-micahs-line': (w, h) => company(w, h, `<p class="h" style="font-size:${h * .28}px;white-space:nowrap">${H(copy.confidence)}</p>`),
-    'linkedin-company-wordmark': (w, h) => company(w, h, `<div class="mark mask" style="width:${w * .28}px"></div>`),
+    ...Object.fromEntries(Object.keys(banners).flatMap((id) => [[`linkedin-${id}`, banners[id]], [`mock-${id}`, (w) => mock(id, w)]])),
 
     // X header 1500x500 and YouTube banner 2560x1440 (safe area 1546x423, centred).
     'x-header': (w, h) => `<div class="board" style="width:${w}px;height:${h}px;display:grid;place-items:center;text-align:center">${sky}<div><div class="mark mask" style="width:${w * .3}px"></div><p class="h" style="font-size:${h * .14}px;margin-top:${h * .09}px">${H(copy.oneLiner)}</p></div></div>`,

@@ -25,15 +25,34 @@ const LETTERMARK = process.env.LETTERMARK ?? "serif";
 // id, CSS width, CSS height, device scale, final file name (relative to brand-assets/), note.
 const BOARDS = [
   ["sharing-image", 1200, 630, 2, "social/sharing-image.png", "Sharing image for links, 2400x1260 (1.91:1), 100px clear margins"],
-  ["linkedin-personal-micahs-line", 1584, 396, 1, "social/linkedin/personal-micahs-line.png", "Personal banner: Micah's line"],
-  ["linkedin-personal-what-we-do", 1584, 396, 1, "social/linkedin/personal-what-we-do.png", "Personal banner: what we do"],
-  ["linkedin-personal-what-we-do-with-sentence", 1584, 396, 1, "social/linkedin/personal-what-we-do-with-sentence.png", "Personal banner: what we do, with the sentence"],
-  ["linkedin-personal-website-headline", 1584, 396, 1, "social/linkedin/personal-website-headline.png", "Personal banner: the website headline"],
-  ["linkedin-personal-wordmark-and-micahs-line", 1584, 396, 1, "social/linkedin/personal-wordmark-and-micahs-line.png", "Personal banner: wordmark and Micah's line"],
-  ["linkedin-personal-wordmark", 1584, 396, 1, "social/linkedin/personal-wordmark.png", "Personal banner: wordmark only"],
-  ["linkedin-company-what-we-do", 1128, 191, 1, "social/linkedin/company-what-we-do.png", "Company page cover: what we do"],
-  ["linkedin-company-micahs-line", 1128, 191, 1, "social/linkedin/company-micahs-line.png", "Company page cover: Micah's line"],
-  ["linkedin-company-wordmark", 1128, 191, 1, "social/linkedin/company-wordmark.png", "Company page cover: wordmark only"],
+  ["linkedin-micah-1-confidence", 1584, 396, 1, "social/linkedin/micah-1-confidence.png", "Micah: Confidence before technology."],
+  ["mock-micah-1-confidence", 1128, 474, 1, null, "Profile mockup: Micah: Confidence before technology."],
+  ["linkedin-micah-2-confidence-role", 1584, 396, 1, "social/linkedin/micah-2-confidence-role.png", "Micah: the line, with the role"],
+  ["mock-micah-2-confidence-role", 1128, 474, 1, null, "Profile mockup: Micah: the line, with the role"],
+  ["linkedin-micah-3-what-we-do-confidence", 1584, 396, 1, "social/linkedin/micah-3-what-we-do-confidence.png", "Micah: what we do, with the line under it"],
+  ["mock-micah-3-what-we-do-confidence", 1128, 474, 1, null, "Profile mockup: Micah: what we do, with the line under it"],
+  ["linkedin-micah-4-confidence-website", 1584, 396, 1, "social/linkedin/micah-4-confidence-website.png", "Micah: the line, with the website"],
+  ["mock-micah-4-confidence-website", 1128, 474, 1, null, "Profile mockup: Micah: the line, with the website"],
+  ["linkedin-jeff-1-what-we-do", 1584, 396, 1, "social/linkedin/jeff-1-what-we-do.png", "Jeff: what we do"],
+  ["mock-jeff-1-what-we-do", 1128, 474, 1, null, "Profile mockup: Jeff: what we do"],
+  ["linkedin-jeff-2-what-we-do-sentence", 1584, 396, 1, "social/linkedin/jeff-2-what-we-do-sentence.png", "Jeff: what we do, with the sentence"],
+  ["mock-jeff-2-what-we-do-sentence", 1128, 474, 1, null, "Profile mockup: Jeff: what we do, with the sentence"],
+  ["linkedin-jeff-3-what-we-do-role", 1584, 396, 1, "social/linkedin/jeff-3-what-we-do-role.png", "Jeff: what we do, with the role"],
+  ["mock-jeff-3-what-we-do-role", 1128, 474, 1, null, "Profile mockup: Jeff: what we do, with the role"],
+  ["linkedin-jeff-4-website-headline", 1584, 396, 1, "social/linkedin/jeff-4-website-headline.png", "Jeff: the website headline, with the website"],
+  ["mock-jeff-4-website-headline", 1128, 474, 1, null, "Profile mockup: Jeff: the website headline, with the website"],
+  ["linkedin-employee-1-what-we-do-website", 1584, 396, 1, "social/linkedin/employee-1-what-we-do-website.png", "Employees: what we do, with the website"],
+  ["mock-employee-1-what-we-do-website", 1128, 474, 1, null, "Profile mockup: Employees: what we do, with the website"],
+  ["linkedin-employee-2-confidence", 1584, 396, 1, "social/linkedin/employee-2-confidence.png", "Employees: Confidence before technology."],
+  ["mock-employee-2-confidence", 1128, 474, 1, null, "Profile mockup: Employees: Confidence before technology."],
+  ["linkedin-employee-3-wordmark-what-we-do", 1584, 396, 1, "social/linkedin/employee-3-wordmark-what-we-do.png", "Employees: wordmark, what we do"],
+  ["mock-employee-3-wordmark-what-we-do", 1128, 474, 1, null, "Profile mockup: Employees: wordmark, what we do"],
+  ["linkedin-company-1-what-we-do-website", 1128, 191, 1, "social/linkedin/company-1-what-we-do-website.png", "Company page: what we do, with the website"],
+  ["mock-company-1-what-we-do-website", 1128, 383, 1, null, "Profile mockup: Company page: what we do, with the website"],
+  ["linkedin-company-2-sentence-website", 1128, 191, 1, "social/linkedin/company-2-sentence-website.png", "Company page: the full sentence, with the website"],
+  ["mock-company-2-sentence-website", 1128, 383, 1, null, "Profile mockup: Company page: the full sentence, with the website"],
+  ["linkedin-company-3-confidence", 1128, 191, 1, "social/linkedin/company-3-confidence.png", "Company page: Confidence before technology."],
+  ["mock-company-3-confidence", 1128, 383, 1, null, "Profile mockup: Company page: Confidence before technology."],
   ["x-header", 1500, 500, 1, "social/x-header.png", "X header, 1500x500"],
   ["youtube-banner", 2560, 1440, 1, "social/youtube-banner.png", "YouTube banner, 2560x1440, safe area 1546x423"],
   ...["serif", "wordmark", "monogram", "sans"].flatMap((k) => [
@@ -70,6 +89,7 @@ try {
 
   if (!final) {
     const cell = ([id, w, h, scale, , note]) => {
+      if (id.startsWith("linkedin-")) return "";
       const fav = id.startsWith("favicon");
       const strip = fav ? `<div class="strip">${FAVICON_SIZES.map((s) => `<img src="${id}-${s}.png" width="${s}" height="${s}" alt="" /><span>${s}</span>`).join("")}</div>` : "";
       return `<figure><img src="${id}.png" style="width:${fav || id.startsWith("avatar") ? 180 : Math.min(760, w)}px;aspect-ratio:${w}/${h}" alt="" />${strip}<figcaption><strong>${id}</strong> · ${w * scale}×${h * scale}<br />${note}</figcaption></figure>`;
