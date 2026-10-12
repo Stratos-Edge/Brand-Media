@@ -1,76 +1,63 @@
 # Brand-Media
 
-Brand identity, document standards, and media assets for Stratos Edge.
+Brand identity, document standards, and media assets for Stratos Edge. The company's Claude tools read `guides/Brand-Guide.md` live from this repo.
 
 ## Structure
 
 ```
 .
 ├─ guides/
-│  ├─ Brand-Guide.md
+│  ├─ Brand-Guide.md              current (reconciled with the website 12 Oct 2026)
 │  ├─ Document-Guide.md
-│  ├─ Stratos_Edge_Brand_Guide.pdf
+│  ├─ Stratos_Edge_Brand_Guide.pdf       August 2026, predates the October pass
 │  ├─ Stratos_Edge_Document_Guide.pdf
 │  └─ pdf-sources/
-│     ├─ brand-guide.html
-│     └─ document-guide.html
 ├─ brand-assets/
 │  ├─ core/
-│  │  ├─ stratos-logo-black.png
-│  │  ├─ stratos-logo-white.png
-│  │  ├─ stratos-lettermark-black.png
-│  │  ├─ stratos-lettermark-white.png
-│  │  └─ stratos-favicon.png
+│  │  ├─ stratos-logo-black.png / stratos-logo-white.png     the wordmark
+│  │  ├─ stratos-lettermark-black.png / -white.png            lettermark, transparent ground
+│  │  ├─ stratos-favicon.png                                  512, on the sky; also -180, -32, -16
 │  └─ social/
-│     ├─ stratos-profile.png
+│     ├─ sharing-image.png              2400x1260, the link-preview image (og:image)
+│     ├─ stratos-profile.png            400x400, profile photo for every platform
+│     ├─ youtube-banner.png             2560x1440, safe area 1546x423
+│     ├─ x-header.png                   1500x500
 │     └─ linkedin/
-│        ├─ linkedin-banner-stratos.png
-│        ├─ linkedin-banner-jeff.png
-│        └─ linkedin-banner-micah.png
+│        ├─ personal-*.png              1584x396, six lines to choose from
+│        └─ company-*.png               1128x191, three lines to choose from
 ├─ scripts/
+│  ├─ brand-media.mjs                   renders the suite (Playwright)
+│  ├─ brand-media/index.html            the one template, on the site's sky wash
+│  ├─ brand-media/src/                  the sky photo, the wordmark, its cut letters
 │  └─ render-pdfs.mjs
 └─ package.json
 ```
 
-## Guides
+## Media
 
-- **[guides/Brand-Guide.md](./guides/Brand-Guide.md)** — colors, typography, marks, signature devices, component specs.
-- **[guides/Document-Guide.md](./guides/Document-Guide.md)** — the two document profiles (Stratos Simple, Stratos Playbook) and when to use which.
-- **[guides/Stratos_Edge_Brand_Guide.pdf](./guides/Stratos_Edge_Brand_Guide.pdf)** — Brand Guide as a shareable PDF (8 pages).
-- **[guides/Stratos_Edge_Document_Guide.pdf](./guides/Stratos_Edge_Document_Guide.pdf)** — Document Guide as a shareable PDF (6 pages).
+Everything in `brand-assets/social/` and the favicon is rendered from one template with the website's fonts, colors and sky, so a change to a line or a size is an edit to `scripts/brand-media/index.html` and a re-render.
 
-## Brand assets
-
-### `brand-assets/core/`
-
-The full wordmark and the compact lettermark, black and white variants.
-
-| File | Notes |
-|---|---|
-| `stratos-logo-black.png` | Wordmark on light backgrounds. |
-| `stratos-logo-white.png` | Wordmark on dark backgrounds. |
-| `stratos-lettermark-black.png` | Compact mark on light. Use where the full wordmark won't fit. |
-| `stratos-lettermark-white.png` | Compact mark on dark. |
-| `stratos-favicon.png` | Lettermark in a rounded-square frame on off-white. Used as the website favicon. 500×500. |
-
-### `brand-assets/social/`
-
-| File | Notes |
-|---|---|
-| `stratos-profile.png` | Cross-channel profile-photo mark. Square crop, works on any platform's profile slot. |
-| `linkedin/linkedin-banner-stratos.png` | LinkedIn banner — Stratos Edge company page. 1584 × 396 px. |
-| `linkedin/linkedin-banner-jeff.png` | LinkedIn banner — Jeff Hardman. 1584 × 396 px. |
-| `linkedin/linkedin-banner-micah.png` | LinkedIn banner — Micah Laughlin. 1584 × 396 px. |
-
-Channel-specific assets live in named subfolders (e.g. `linkedin/`). Cross-channel assets live at the top of `social/`.
-
-## Regenerating the PDFs
-
-The PDFs are rendered from HTML sources by a Playwright script.
-
-```bash
-npm install         # first time only — installs Playwright + Chromium
-npm run render      # writes both PDFs into guides/
+```
+npm install
+npm run media                          # review/: every board, every lettermark option, a contact sheet
+LETTERMARK=serif npm run media -- --final   # brand-assets/: the chosen set with clean names
 ```
 
-Script: [scripts/render-pdfs.mjs](./scripts/render-pdfs.mjs). HTML sources reference `brand-assets/core/` for inline mark previews; Playwright bakes images into the rendered PDFs.
+Lettermark options: `serif`, `wordmark`, `monogram`, `sans` (see the guide).
+
+## Guides
+
+- **[guides/Brand-Guide.md](./guides/Brand-Guide.md)** — colors, typography, the sky, marks, signature devices, component specs.
+- **[guides/Document-Guide.md](./guides/Document-Guide.md)** — the two document profiles (Stratos Simple, Stratos Playbook) and when to use which.
+- The two PDFs are the August 2026 renderings; the Markdown is current.
+
+## Where the assets are used
+
+| Asset | Used by |
+|---|---|
+| `social/sharing-image.png` | Website `public/social-sharing-image.png` (every page's og:image and twitter:image). |
+| `core/stratos-favicon.png` | Website `public/favicon.png`. |
+| `social/stratos-profile.png` | LinkedIn, YouTube, Google Business Profile, directory listings. |
+| `social/linkedin/personal-*.png` | Micah, Jeff and employee profiles. |
+| `social/linkedin/company-*.png` | The LinkedIn company page. |
+| `social/youtube-banner.png` | youtube.com/@stratosedgeai. |

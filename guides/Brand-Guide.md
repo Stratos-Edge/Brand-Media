@@ -6,7 +6,7 @@ For the polished, shareable version with rendered swatches and type specimens, s
 
 For voice and document profiles, see [Document-Guide.md](./Document-Guide.md).
 
-> **Source of truth:** the live homepage at [stratosedge.ai](https://stratosedge.ai) and the FlightPlan deliverables. If anything here conflicts with what the homepage actually does, the homepage wins — this guide is updated to match.
+> **Source of truth:** the live homepage at [stratosedge.ai](https://stratosedge.ai) and the FlightPlan deliverables. If anything here conflicts with what the homepage actually does, the homepage wins — this guide is updated to match. Last reconciled with the site: 12 October 2026 (typography, the sky, the lettermark, the media suite). The PDF guides predate that pass.
 
 ---
 
@@ -61,41 +61,46 @@ Hierarchy on dark is opacity-driven, same principle as light pages. Don't introd
 
 ## Typography
 
-Two fonts, both Google Fonts.
+Three fonts, all Google Fonts. (Until October 2026 this guide named Lora as the body face; the website moved to Source Sans 3 and Source Serif 4, and the site is the source of truth.)
 
 ### Work Sans — the brand voice
 
-Used for every headline, every section title, every label, every UI element, every nav item, every wordmark, and the signature coral period device. Weights 100–600; brand voice lives at **400** for hero headlines and **200** for serene / large treatments (cover titles, FlightPlan auth gate).
+Used for every headline, every section title, every label, every UI element, every wordmark, and the signature coral period device. Brand voice lives at **300** for hero and cover headlines (the About page's "AI adoption intelligence.", the sharing image, the banners) and **400–600** for sub-headings and labels.
 
 Fallback: `-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif`
 
-### Lora — the body and the editorial moment
+### Source Sans 3 — the reading voice
 
-Used for body paragraphs, long-read content, and FlightPlan deliverable hero titles where editorial weight matters. Weights 400–700 plus italic.
+Body copy, leads, summaries, captions, navigation. Weights 300–600.
+
+Fallback: `-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif`
+
+### Source Serif 4 — the document voice
+
+Long-form research prose (the research issues), formal documents, the About letter. Optical size 8–60, weights 400–500.
 
 Fallback: `Georgia, 'Times New Roman', serif`
 
 ### Pairing rule
 
 - Structure (headlines, labels, UI, buttons, data) → **Work Sans**
-- Story (body paragraphs, narrative, FlightPlan hero titles) → **Lora**
-- The site's one notable inversion: **website nav is Lora**, not Work Sans — reads "publication," not "tech product."
-- Differentiation comes through weight and italic style, not new colors.
+- Reading (body, leads, summaries) → **Source Sans 3**
+- Documents and research prose → **Source Serif 4**
+- Differentiation comes through weight, not new colors.
 
 ### Type scale
 
 | Element | Font | Size | Weight | Notes |
 |---|---|---|---|---|
-| Hero headline | Work Sans | 40–72pt | 400 | `-0.015em` to `-0.02em`. Coral period. |
-| Section headline | Work Sans | 32–56pt | 400 | `-0.02em`. Coral period. |
-| Cover title | Work Sans | 48–72pt | 200 | `-0.03em`. Coral period. |
+| Hero headline | Work Sans | 40–96pt | 300 | `-0.02em`. Coral period. |
+| Section headline | Work Sans | 32–56pt | 300–600 | Coral period. |
 | Sub-heading | Work Sans | 16–22pt | 600 | |
-| Editorial hero | Lora | 32–48pt | 400 | FlightPlan / Playbook dark hero sections. |
-| Body | Lora | 16–18pt | 400 | Line-height 1.55. INK. |
-| Body small / caption | Lora | 13–14pt | 400 | MUTED. |
+| Lead / summary | Source Sans 3 | 18–22pt | 400 | Muted ink. |
+| Body | Source Sans 3 | 16–18pt | 400 | Line-height 1.5–1.6. INK. |
+| Research prose | Source Serif 4 | 17–19pt | 400 | Line-height 1.6. |
+| Caption | Source Sans 3 | 13–14pt | 400 | MUTED. |
 | Eyebrow / label | Work Sans | 9–13pt | 500–600 | UPPERCASE. `0.12–0.22em`. CORAL. |
-| Wordmark small | Work Sans | 9–10pt | 500 | UPPERCASE. `0.25em`. |
-| Button label | Work Sans | 14pt | 400 | |
+| Button label | Work Sans | 14pt | 500 | |
 
 ---
 
@@ -124,6 +129,22 @@ What we help you do<span style="color: #FF6B4A">.</span>
 
 ---
 
+## The sky
+
+The one photographic surface in the brand: a pale sky with cirrus, used for the website heroes (home, About, FAQ, answer pages) and for every piece of brand media on a photo (sharing image, banners, avatar, favicon). It is always the same treatment, so the brand reads as one sky everywhere.
+
+**Construction.** The photo `scripts/brand-media/src/sky-clouds.jpg` as shot, no brightening or desaturation, under a light wash that keeps the clouds and lets navy type sit on it:
+
+```css
+--sky-wash: linear-gradient(180deg, rgba(248,249,249,.82) 0%, rgba(246,247,247,.78) 55%, rgba(253,239,233,.82) 100%);
+```
+
+Type on the sky is INK (navy); the eyebrow and the period are CORAL. No white type on the sky, no vignette, no darker "rich blue" variant. The "no blue" rule below is about palette colors; the sky is a photograph and is the exception.
+
+The website defines the wash once in `src/app/pages/home/home-intro.css` and the media template copies the value; change both together.
+
+---
+
 ## Marks
 
 ### Wordmark — `STRATOS | EDGE`
@@ -143,12 +164,18 @@ Two colorways for the two backgrounds.
 
 ### Lettermark
 
-Compact mark for tight contexts where the full wordmark won't fit (favicons, app icons, profile photos, watermarks). Carries the signature coral period device.
+Compact mark for tight contexts where the full wordmark won't fit (favicon, app icon, profile photo, watermark). Carries the signature coral period device. On the sky by default (`brand-assets/core/stratos-favicon.png`, `brand-assets/social/stratos-profile.png`).
 
-| | Asset |
+Four drawings exist in the media template (`npm run media` renders all four for review; `LETTERMARK=<name> npm run media -- --final` exports the chosen one):
+
+| Name | What it is |
 |---|---|
-| On light | ![Lettermark black](../brand-assets/core/stratos-lettermark-black.png) |
-| On dark | ![Lettermark white](../brand-assets/core/stratos-lettermark-white.png) |
+| `serif` | A Source Serif 4 italic S with the coral stop. The drawing behind the 2026 favicon. |
+| `wordmark` | The S cut from the wordmark itself, with the coral stop. The same letterform as `STRATOS`. |
+| `monogram` | `S | E` from the wordmark, with its divider, stop after the E. |
+| `sans` | A Work Sans light S with the coral stop, the hero headline's own weight. |
+
+The older black and white lettermark PNGs in `brand-assets/core/` are the serif drawing on a transparent ground.
 
 ---
 
