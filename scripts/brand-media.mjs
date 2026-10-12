@@ -17,7 +17,10 @@ await mkdir(out, { recursive: true });
 
 // Masks cannot read file:// images, so the wordmark and its letters go in as data URIs.
 const uri = async (name) => `url(data:image/png;base64,${(await readFile(path.join(srcDir, "src", name))).toString("base64")})`;
-const vars = `:root{--mark-url:${await uri("stratos-logo-black.png")};--s-url:${await uri("glyph-S.png")};--e-url:${await uri("glyph-E.png")};--pipe-url:${await uri("glyph-pipe.png")}}`;
+// Founders' photos for the review mockups only, read from the website repo when it is beside this one.
+const site = path.resolve(root, "..", "Stratos-Edge-Website (GIT REPO)", "src", "assets", "people");
+const photo = async (name) => { try { return `url(data:image/jpeg;base64,${(await readFile(path.join(site, name))).toString("base64")})`; } catch { return "none"; } };
+const vars = `:root{--mark-url:${await uri("stratos-logo-black.png")};--s-url:${await uri("glyph-S.png")};--e-url:${await uri("glyph-E.png")};--pipe-url:${await uri("glyph-pipe.png")};--photo-micah:${await photo("micah-laughlin.jpg")};--photo-jeff:${await photo("jeff-hardman.jpg")}}`;
 
 // The chosen lettermark; change here when the choice changes.
 const LETTERMARK = process.env.LETTERMARK ?? "serif";
@@ -25,34 +28,38 @@ const LETTERMARK = process.env.LETTERMARK ?? "serif";
 // id, CSS width, CSS height, device scale, final file name (relative to brand-assets/), note.
 const BOARDS = [
   ["sharing-image", 1200, 630, 2, "social/sharing-image.png", "Sharing image for links, 2400x1260 (1.91:1), 100px clear margins"],
-  ["linkedin-micah-1-confidence", 1584, 396, 1, "social/linkedin/micah-1-confidence.png", "Micah: Confidence before technology."],
-  ["mock-micah-1-confidence", 1128, 474, 1, null, "Profile mockup: Micah: Confidence before technology."],
-  ["linkedin-micah-2-confidence-role", 1584, 396, 1, "social/linkedin/micah-2-confidence-role.png", "Micah: the line, with the role"],
-  ["mock-micah-2-confidence-role", 1128, 474, 1, null, "Profile mockup: Micah: the line, with the role"],
-  ["linkedin-micah-3-what-we-do-confidence", 1584, 396, 1, "social/linkedin/micah-3-what-we-do-confidence.png", "Micah: what we do, with the line under it"],
-  ["mock-micah-3-what-we-do-confidence", 1128, 474, 1, null, "Profile mockup: Micah: what we do, with the line under it"],
-  ["linkedin-micah-4-confidence-website", 1584, 396, 1, "social/linkedin/micah-4-confidence-website.png", "Micah: the line, with the website"],
-  ["mock-micah-4-confidence-website", 1128, 474, 1, null, "Profile mockup: Micah: the line, with the website"],
-  ["linkedin-jeff-1-what-we-do", 1584, 396, 1, "social/linkedin/jeff-1-what-we-do.png", "Jeff: what we do"],
-  ["mock-jeff-1-what-we-do", 1128, 474, 1, null, "Profile mockup: Jeff: what we do"],
-  ["linkedin-jeff-2-what-we-do-sentence", 1584, 396, 1, "social/linkedin/jeff-2-what-we-do-sentence.png", "Jeff: what we do, with the sentence"],
-  ["mock-jeff-2-what-we-do-sentence", 1128, 474, 1, null, "Profile mockup: Jeff: what we do, with the sentence"],
-  ["linkedin-jeff-3-what-we-do-role", 1584, 396, 1, "social/linkedin/jeff-3-what-we-do-role.png", "Jeff: what we do, with the role"],
-  ["mock-jeff-3-what-we-do-role", 1128, 474, 1, null, "Profile mockup: Jeff: what we do, with the role"],
-  ["linkedin-jeff-4-website-headline", 1584, 396, 1, "social/linkedin/jeff-4-website-headline.png", "Jeff: the website headline, with the website"],
-  ["mock-jeff-4-website-headline", 1128, 474, 1, null, "Profile mockup: Jeff: the website headline, with the website"],
-  ["linkedin-employee-1-what-we-do-website", 1584, 396, 1, "social/linkedin/employee-1-what-we-do-website.png", "Employees: what we do, with the website"],
-  ["mock-employee-1-what-we-do-website", 1128, 474, 1, null, "Profile mockup: Employees: what we do, with the website"],
-  ["linkedin-employee-2-confidence", 1584, 396, 1, "social/linkedin/employee-2-confidence.png", "Employees: Confidence before technology."],
-  ["mock-employee-2-confidence", 1128, 474, 1, null, "Profile mockup: Employees: Confidence before technology."],
-  ["linkedin-employee-3-wordmark-what-we-do", 1584, 396, 1, "social/linkedin/employee-3-wordmark-what-we-do.png", "Employees: wordmark, what we do"],
-  ["mock-employee-3-wordmark-what-we-do", 1128, 474, 1, null, "Profile mockup: Employees: wordmark, what we do"],
-  ["linkedin-company-1-what-we-do-website", 1128, 191, 1, "social/linkedin/company-1-what-we-do-website.png", "Company page: what we do, with the website"],
-  ["mock-company-1-what-we-do-website", 1128, 383, 1, null, "Profile mockup: Company page: what we do, with the website"],
-  ["linkedin-company-2-sentence-website", 1128, 191, 1, "social/linkedin/company-2-sentence-website.png", "Company page: the full sentence, with the website"],
-  ["mock-company-2-sentence-website", 1128, 383, 1, null, "Profile mockup: Company page: the full sentence, with the website"],
-  ["linkedin-company-3-confidence", 1128, 191, 1, "social/linkedin/company-3-confidence.png", "Company page: Confidence before technology."],
-  ["mock-company-3-confidence", 1128, 383, 1, null, "Profile mockup: Company page: Confidence before technology."],
+  ["linkedin-micah-1-confidence", 1584, 396, 1, "social/linkedin/micah-1-confidence.png", "Confidence before technology."],
+  ["mock-micah-1-confidence", 1128, 695, 1, null, "Mockup"],
+  ["linkedin-micah-2-cio-seat", 1584, 396, 1, "social/linkedin/micah-2-cio-seat.png", "26 years in the CIO's seat. Now on your side of the table."],
+  ["mock-micah-2-cio-seat", 1128, 695, 1, null, "Mockup"],
+  ["linkedin-micah-3-what-it-returns", 1584, 396, 1, "social/linkedin/micah-3-what-it-returns.png", "What the AI already in your building returns, and what to do next."],
+  ["mock-micah-3-what-it-returns", 1128, 695, 1, null, "Mockup"],
+  ["linkedin-micah-4-confidence-fact", 1584, 396, 1, "social/linkedin/micah-4-confidence-fact.png", "Confidence before technology, with the 26 years under it"],
+  ["mock-micah-4-confidence-fact", 1128, 695, 1, null, "Mockup"],
+  ["linkedin-micah-5-helping-leaders-right", 1584, 396, 1, "social/linkedin/micah-5-helping-leaders-right.png", "Helping leaders see what AI returns, and what to do next (right-aligned, with the website)"],
+  ["mock-micah-5-helping-leaders-right", 1128, 695, 1, null, "Mockup"],
+  ["linkedin-jeff-1-four-decades", 1584, 396, 1, "social/linkedin/jeff-1-four-decades.png", "Four decades connecting the mid-market to technology that fits."],
+  ["mock-jeff-1-four-decades", 1128, 695, 1, null, "Mockup"],
+  ["linkedin-jeff-2-thousand-deals", 1584, 396, 1, "social/linkedin/jeff-2-thousand-deals.png", "More than 1,000 deals. One question: what will it return?"],
+  ["mock-jeff-2-thousand-deals", 1128, 695, 1, null, "Mockup"],
+  ["linkedin-jeff-3-bring-the-problem", 1584, 396, 1, "social/linkedin/jeff-3-bring-the-problem.png", "Bring the problem. We'll bring the plan."],
+  ["mock-jeff-3-bring-the-problem", 1128, 695, 1, null, "Mockup"],
+  ["linkedin-jeff-4-what-we-do-fact", 1584, 396, 1, "social/linkedin/jeff-4-what-we-do-fact.png", "AI strategy consulting, with the four decades under it"],
+  ["mock-jeff-4-what-we-do-fact", 1128, 695, 1, null, "Mockup"],
+  ["linkedin-jeff-5-four-decades-right", 1584, 396, 1, "social/linkedin/jeff-5-four-decades-right.png", "Four decades connecting the mid-market to technology that fits (right-aligned, with the website)"],
+  ["mock-jeff-5-four-decades-right", 1128, 695, 1, null, "Mockup"],
+  ["linkedin-employee-1-what-we-do-website", 1584, 396, 1, "social/linkedin/employee-1-what-we-do-website.png", "AI strategy consulting, with the website"],
+  ["mock-employee-1-what-we-do-website", 1128, 695, 1, null, "Mockup"],
+  ["linkedin-employee-2-confidence", 1584, 396, 1, "social/linkedin/employee-2-confidence.png", "Confidence before technology."],
+  ["mock-employee-2-confidence", 1128, 695, 1, null, "Mockup"],
+  ["linkedin-employee-3-wordmark-what-we-do", 1584, 396, 1, "social/linkedin/employee-3-wordmark-what-we-do.png", "The wordmark, with AI strategy consulting"],
+  ["mock-employee-3-wordmark-what-we-do", 1128, 695, 1, null, "Mockup"],
+  ["linkedin-company-1-what-we-do-website", 1128, 191, 1, "social/linkedin/company-1-what-we-do-website.png", "AI strategy consulting, with the website"],
+  ["mock-company-1-what-we-do-website", 1128, 433, 1, null, "Mockup"],
+  ["linkedin-company-2-sentence-website", 1128, 191, 1, "social/linkedin/company-2-sentence-website.png", "AI strategy consulting, the full sentence and the website"],
+  ["mock-company-2-sentence-website", 1128, 433, 1, null, "Mockup"],
+  ["linkedin-company-3-confidence", 1128, 191, 1, "social/linkedin/company-3-confidence.png", "Confidence before technology."],
+  ["mock-company-3-confidence", 1128, 433, 1, null, "Mockup"],
   ["x-header", 1500, 500, 1, "social/x-header.png", "X header, 1500x500"],
   ["youtube-banner", 2560, 1440, 1, "social/youtube-banner.png", "YouTube banner, 2560x1440, safe area 1546x423"],
   ...["serif", "wordmark", "monogram", "sans"].flatMap((k) => [

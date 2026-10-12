@@ -62,49 +62,64 @@
     sans: (h) => `<span class="sans-s dotafter" style="font-size:${h * .7}px;--d:${h * .12}px;margin-right:${h * .14}px">S</span>`,
   };
 
-  // LinkedIn banners. On the profile page the photo (about 160px of a 1128px card) overlaps the bottom-left of the
-  // banner and the "edit" control sits top-right, so the words are centred in the clear zone: right of the photo,
-  // above its top edge. Sizes are fractions of the board so the same layout renders the 1584x396 file and the mockup.
-  const clearZone = (w, h) => `padding:${h * .14}px ${w * .05}px ${h * .22}px ${w * .33}px`;
-  const personal = (w, h, inner) => `<div class="board" style="width:${w}px;height:${h}px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;${clearZone(w, h)}">${sky}${inner}</div>`;
-  const company = (w, h, inner) => `<div class="board" style="width:${w}px;height:${h}px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:${h * .1}px ${w * .05}px ${h * .1}px ${w * .2}px">${sky}${inner}</div>`;
+  // LinkedIn banners. Measured on linkedin.com, 12 Oct 2026, desktop: the personal cover shows at 4:1; the photo ring is
+  // 20% of the cover's width, 3% in from the left, its top at 51% of the cover's height (it hangs below the cover). The
+  // phone app draws the photo nearer 27% of the width. So the words live right of 30% and, where they reach below the
+  // photo's top, stay in that zone. The company cover shows at 1128:191 with the logo tile 16% wide at 3%, top at 52%.
+  const zone = (w, h) => `padding:${h * .1}px ${w * .04}px ${h * .12}px ${w * .3}px`;
+  const personal = (w, h, inner, align = 'center') => `<div class="board" style="width:${w}px;height:${h}px;display:flex;flex-direction:column;justify-content:center;align-items:${align === 'left' ? 'flex-start' : align === 'right' ? 'flex-end' : 'center'};text-align:${align};${zone(w, h)}">${sky}${inner}</div>`;
+  const company = (w, h, inner, align = 'center') => `<div class="board" style="width:${w}px;height:${h}px;display:flex;flex-direction:column;justify-content:center;align-items:${align === 'left' ? 'flex-start' : 'center'};text-align:${align};padding:${h * .1}px ${w * .04}px ${h * .1}px ${w * .24}px">${sky}${inner}</div>`;
   const line = (h, text, size) => `<p class="h" style="font-size:${h * size}px;white-space:nowrap">${H(text)}</p>`;
   const sub = (h, text, size, top) => `<p class="small" style="font-size:${h * size}px;margin-top:${h * top}px;display:block">${text}</p>`;
-  const sentence = (h, size, top, width) => `<p class="lead" style="font-size:${h * size}px;margin-top:${h * top}px;max-width:${width}px">${copy.sentence}</p>`;
   const roles = { micah: 'Co-founder and Chief Strategy Officer, Stratos Edge', jeff: 'Co-founder, Stratos Edge' };
 
+  const lines = {
+    micahSeat: '26 years in the CIO\'s seat. Now on your side of the table.',
+    micahReturns: 'What the AI already in your building returns, and what to do next.',
+    micahLeaders: 'Helping leaders see what AI returns, and what to do next.',
+    micahFact: '26 years as a CIO-level executive at mid-market companies',
+    jeffDecades: 'Four decades connecting the mid\u2011market to technology that fits.',
+    jeffDeals: 'More than 1,000 deals. One question: what will it return?',
+    jeffCall: 'Bring the problem. We\'ll bring the plan.',
+    jeffFact: 'Four decades in the technology channel, more than 1,000 deals',
+  };
   const banners = {
-    // Micah
+    // Micah: his line, then lines drawn from the About page and his own headline.
     'micah-1-confidence': (w, h) => personal(w, h, line(h, copy.confidence, .17)),
-    'micah-2-confidence-role': (w, h) => personal(w, h, line(h, copy.confidence, .16) + sub(h, roles.micah, .062, .06)),
-    'micah-3-what-we-do-confidence': (w, h) => personal(w, h, line(h, copy.oneLiner, .17) + sub(h, copy.confidence, .07, .05)),
-    'micah-4-confidence-website': (w, h) => personal(w, h, line(h, copy.confidence, .16) + sub(h, copy.site, .062, .06)),
-    // Jeff
-    'jeff-1-what-we-do': (w, h) => personal(w, h, line(h, copy.oneLiner, .19)),
-    'jeff-2-what-we-do-sentence': (w, h) => personal(w, h, line(h, copy.oneLiner, .16) + sentence(h, .066, .05, w * .5)),
-    'jeff-3-what-we-do-role': (w, h) => personal(w, h, line(h, copy.oneLiner, .17) + sub(h, roles.jeff, .062, .06)),
-    'jeff-4-website-headline': (w, h) => personal(w, h, `<p class="h" style="font-size:${h * .15}px;max-width:${w * .5}px">${H(copy.hero)}</p>` + sub(h, copy.site, .058, .05)),
+    'micah-2-cio-seat': (w, h) => personal(w, h, `<p class="h" style="font-size:${h * .14}px;max-width:${w * .56}px">${H(lines.micahSeat)}</p>`, 'left'),
+    'micah-3-what-it-returns': (w, h) => personal(w, h, `<p class="h" style="font-size:${h * .135}px;max-width:${w * .6}px">${H(lines.micahReturns)}</p>`, 'left'),
+    'micah-4-confidence-fact': (w, h) => personal(w, h, line(h, copy.confidence, .155) + sub(h, lines.micahFact, .062, .05), 'left'),
+    'micah-5-helping-leaders-right': (w, h) => personal(w, h, `<p class="h" style="font-size:${h * .14}px;max-width:${w * .56}px">${H(lines.micahLeaders)}</p>` + sub(h, copy.site, .058, .05), 'right'),
+    // Jeff: the old banner's idea refreshed, his numbers, and the call he takes.
+    'jeff-1-four-decades': (w, h) => personal(w, h, `<p class="h" style="font-size:${h * .14}px;max-width:${w * .56}px">${H(lines.jeffDecades)}</p>`, 'left'),
+    'jeff-2-thousand-deals': (w, h) => personal(w, h, `<p class="h" style="font-size:${h * .14}px;max-width:${w * .56}px">${H(lines.jeffDeals)}</p>`, 'left'),
+    'jeff-3-bring-the-problem': (w, h) => personal(w, h, line(h, copy.oneLiner === '' ? '' : lines.jeffCall, .16)),
+    'jeff-4-what-we-do-fact': (w, h) => personal(w, h, line(h, copy.oneLiner, .17) + sub(h, lines.jeffFact, .062, .05), 'left'),
+    'jeff-5-four-decades-right': (w, h) => personal(w, h, `<p class="h" style="font-size:${h * .14}px;max-width:${w * .56}px">${H(lines.jeffDecades)}</p>` + sub(h, copy.site, .058, .05), 'right'),
     // Employees
-    'employee-1-what-we-do-website': (w, h) => personal(w, h, line(h, copy.oneLiner, .17) + sub(h, copy.site, .062, .06)),
+    'employee-1-what-we-do-website': (w, h) => personal(w, h, line(h, copy.oneLiner, .17) + sub(h, copy.site, .062, .05), 'left'),
     'employee-2-confidence': (w, h) => personal(w, h, line(h, copy.confidence, .16)),
-    'employee-3-wordmark-what-we-do': (w, h) => personal(w, h, `<div class="mark mask" style="width:${w * .22}px"></div>` + `<p class="h" style="font-size:${h * .13}px;margin-top:${h * .09}px;white-space:nowrap">${H(copy.oneLiner)}</p>`),
+    'employee-3-wordmark-what-we-do': (w, h) => personal(w, h, `<div class="mark mask" style="width:${w * .2}px"></div>` + `<p class="h" style="font-size:${h * .13}px;margin-top:${h * .08}px;white-space:nowrap">${H(copy.oneLiner)}</p>`, 'left'),
     // Company page
     'company-1-what-we-do-website': (w, h) => company(w, h, `<div style="display:flex;align-items:center;gap:${w * .03}px"><p class="h" style="font-size:${h * .27}px;white-space:nowrap">${H(copy.oneLiner)}</p><span class="small" style="font-size:${h * .105}px;border-left:1px solid rgba(4,36,45,.25);padding-left:${w * .022}px">${copy.site}</span></div>`),
-    'company-2-sentence-website': (w, h) => company(w, h, `<p class="h" style="font-size:${h * .2}px;white-space:nowrap">${H(copy.oneLiner)}</p><p class="lead" style="font-size:${h * .082}px;margin-top:${h * .03}px;white-space:nowrap">${copy.sentence}</p><p class="small" style="font-size:${h * .07}px;margin-top:${h * .03}px">${copy.site}</p>`),
+    'company-2-sentence-website': (w, h) => company(w, h, `<p class="h" style="font-size:${h * .2}px;white-space:nowrap">${H(copy.oneLiner)}</p><p class="lead" style="font-size:${h * .082}px;margin-top:${h * .03}px;white-space:nowrap">${copy.sentence}</p><p class="small" style="font-size:${h * .07}px;margin-top:${h * .03}px">${copy.site}</p>`, 'left'),
     'company-3-confidence': (w, h) => company(w, h, line(h, copy.confidence, .27)),
   };
 
-  // Profile mockups for review: the banner at LinkedIn's display width with a placeholder photo or logo tile and
-  // blank name lines where LinkedIn draws them.
-  const person = `<svg viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="38" r="18" fill="#fff"/><path d="M18 92c4-20 18-30 32-30s28 10 32 30z" fill="#fff"/></svg>`;
+  // Review mockups, to the measured geometry, with the real photos (supplied by the renderer as --photo-*).
   const mock = (id, w) => {
     const isCompany = id.startsWith('company');
-    const bh = isCompany ? Math.round(w * 191 / 1128) : Math.round(w * 396 / 1584);
+    const bh = isCompany ? Math.round(w * 191 / 1128) : Math.round(w / 4);
+    const s = w / 792;
+    const who = id.startsWith('micah') ? 'micah' : id.startsWith('jeff') ? 'jeff' : null;
+    const bar = (x, y, bw, bhh, c = '#e6e9ea') => `<div style="position:absolute;left:${x * s}px;top:${y * s}px;width:${bw * s}px;height:${bhh * s}px;background:${c};border-radius:3px"></div>`;
     const photo = isCompany
-      ? `<div style="position:absolute;left:${w * .022}px;top:${bh - w * .055}px;width:${w * .11}px;height:${w * .11}px;background:#fff;border:1px solid rgba(4,36,45,.12);display:grid;place-items:center"><div class="mark mask" style="width:${w * .085}px"></div></div>`
-      : `<div style="position:absolute;left:${w * .022}px;top:${bh - w * .072}px;width:${w * .144}px;height:${w * .144}px;border-radius:50%;background:#cfd6d8;border:4px solid #fff;box-sizing:border-box;overflow:hidden">${person}</div>`;
-    const lines = `<div style="position:absolute;left:${w * .022}px;top:${bh + w * .085}px;display:grid;gap:${w * .012}px"><div style="width:${w * .19}px;height:${w * .02}px;background:#dfe3e4;border-radius:3px"></div><div style="width:${w * .32}px;height:${w * .014}px;background:#eceeef;border-radius:3px"></div><div style="width:${w * .12}px;height:${w * .012}px;background:#eceeef;border-radius:3px"></div></div>`;
-    return `<div style="position:relative;width:${w}px;height:${bh + w * .17}px;background:#fff;overflow:hidden">${banners[id](w, bh)}${photo}${lines}</div>`;
+      ? `<div style="position:absolute;left:${24 * s}px;top:${bh - 64 * s}px;width:${128 * s}px;height:${128 * s}px;background:#fff;border:1px solid rgba(4,36,45,.12);box-sizing:border-box;display:grid;place-items:center"><div class="mark mask" style="width:${96 * s}px"></div></div>`
+      : `<div style="position:absolute;left:${24 * s}px;top:${bh - 96 * s}px;width:${160 * s}px;height:${160 * s}px;border-radius:50%;background:#fff;display:grid;place-items:center"><div style="width:${152 * s}px;height:${152 * s}px;border-radius:50%;background:${who ? `var(--photo-${who}) center / cover` : '#cfd6d8'}"></div></div>`;
+    const below = isCompany
+      ? bar(24, bh / s + 80, 160, 30, '#d9dddf') + bar(24, bh / s + 118, 420, 16) + bar(24, bh / s + 142, 240, 16)
+      : bar(24, bh / s + 96, 119, 30, '#d9dddf') + bar(24, bh / s + 130, 485, 18) + bar(24, bh / s + 152, 300, 18) + bar(24, bh / s + 176, 199, 16) + bar(24, bh / s + 200, 115, 16) + bar(24, bh / s + 225, 101, 48, '#dfe3e4') + bar(133, bh / s + 225, 100, 48, '#eceeef') + bar(565, bh / s + 103, 24, 24, '#04242d') + bar(597, bh / s + 106, 87, 18);
+    return `<div style="position:relative;width:${w}px;height:${bh + (isCompany ? 170 : 290) * s}px;background:#fff;overflow:hidden">${banners[id](w, bh)}${photo}${below}</div>`;
   };
 
   const boards = {
