@@ -183,10 +183,17 @@ const u = (v) => n(v * K);
 const letterPaths = (m, wght) => m.letters.map(({ ch, x }) => `<path transform="translate(${u(x)} ${u(m.base)})" d="${glyphs.glyphs[wght][ch].d}"/>`).join("");
 const dots = (cols) => { const s = M.dots.h / 70; return [8, 33, 58].map((cy, i) => `<circle cx="${u(M.dots.x + 10 * s)}" cy="${u(M.dots.y + (cy + 2) * s)}" r="${u(8 * s)}" fill="${cols[i]}"/>`).join(""); };
 const markAt = (cols) => { const s = M.s.h / 276; return STATES.s.map(([x, y, w], i) => `<rect x="${u(M.s.x + (x - 146) * s)}" y="${u(M.s.y + (y - 118) * s)}" width="${u(w * s)}" height="${u(H * s)}" rx="${u(H / 2 * s)}" fill="${cols[i]}"/>`).join(""); };
-const bounds = (withMark) => { // tight to the ink: from the first letter (or the mark) to the last letter's right edge, cap top to baseline
+// The vertical extent of a glyph outline in font units (y grows downward, baseline 0): the round letters overshoot
+// the cap line and the baseline, and the box has to include that or the S, O and G are cut flat.
+const glyphY = (d) => { let y0 = Infinity, y1 = -Infinity, cmd = ""; const t = d.match(/[A-Za-z]|-?\d*\.?\d+/g) ?? []; let nums = [];
+  const flush = () => { if (!nums.length) return; if (cmd === "V") nums.forEach((v) => { y0 = Math.min(y0, v); y1 = Math.max(y1, v); }); else if (cmd !== "H") nums.forEach((v, i) => { if (i % 2) { y0 = Math.min(y0, v); y1 = Math.max(y1, v); } }); nums = []; };
+  for (const k of t) { if (/[A-Za-z]/.test(k)) { flush(); cmd = k.toUpperCase(); } else nums.push(Number(k)); } flush(); return [y0, y1]; };
+const inkY = (m, wght) => { let top = Infinity, bottom = -Infinity; for (const { ch } of m.letters) { const [y0, y1] = glyphY(glyphs.glyphs[wght][ch].d); top = Math.min(top, u(m.base) + y0); bottom = Math.max(bottom, u(m.base) + y1); } return [top, bottom]; };
+const bounds = (withMark) => { // tight to the ink: from the first letter (or the mark) to the last letter's right edge, and the letters' real top and bottom
   const left = withMark ? M.s.x : M.b.letters[0].x, last = M.i.letters.at(-1), right = last.x + (glyphs.glyphs["300"][last.ch].adv / K);
-  const top = Math.min(M.b.base - glyphs.capHeight / K, withMark ? M.s.y : Infinity), bottom = Math.max(M.b.base, withMark ? M.s.y + M.s.h : -Infinity);
-  return { x: u(left), y: u(top), w: u(right - left), h: u(bottom - top) };
+  const [bTop, bBottom] = inkY(M.b, "500"), [iTop, iBottom] = inkY(M.i, "300");
+  const top = Math.min(bTop, iTop, withMark ? u(M.s.y) : Infinity), bottom = Math.max(bBottom, iBottom, withMark ? u(M.s.y + M.s.h) : -Infinity);
+  return { x: u(left), y: top, w: u(right - left), h: bottom - top };
 };
 const wordmark = (col, cols, withMark) => { const B = bounds(withMark); return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${B.w} ${B.h}" role="img"><title>Stratos Edge</title><g transform="translate(${-B.x} ${-B.y})">
   ${withMark ? markAt(cols) : ""}<g fill="${col}">${letterPaths(M.b, "500")}</g>${dots(cols)}<g fill="${col}" fill-opacity=".85">${letterPaths(M.i, "300")}</g></g></svg>\n`; };
