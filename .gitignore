@@ -5,5 +5,5 @@
 node_modules/
 package-lock.json
 
-# Rendered review sheets from npm run media
+# Review renders, never tracked
 review/

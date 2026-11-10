@@ -34,6 +34,7 @@ const BOARDS = [
   ["mock-personal-2-confidence-website", 1128, 695, 1, null, "Mockup"],
   ["linkedin-personal-3-what-we-do-website", 1584, 396, 1, "social/linkedin/personal-3-what-we-do-website.png", "AI strategy consulting. stratosedge.ai"],
   ["mock-personal-3-what-we-do-website", 1128, 695, 1, null, "Mockup"],
+  ["linkedin-personal-4-what-we-do", 1584, 396, 1, "social/linkedin/personal-4-what-we-do.png", "AI strategy consulting. (no website, for Micah)"],
   ["linkedin-company-1-what-we-do-website", 1128, 191, 1, "social/linkedin/company-1-what-we-do-website.png", "AI strategy consulting. stratosedge.ai"],
   ["mock-company-1-what-we-do-website", 1128, 432, 1, null, "Mockup"],
   ["linkedin-company-2-sentence-website", 1128, 191, 1, "social/linkedin/company-2-sentence-website.png", "AI strategy consulting. The sentence. stratosedge.ai"],

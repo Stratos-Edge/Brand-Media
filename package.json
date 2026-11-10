@@ -2,9 +2,9 @@
   "name": "brand-media",
   "version": "1.0.0",
   "private": true,
-  "description": "Stratos Edge brand and media assets",
+  "description": "Stratos Edge brand: the mark, the wordmark, the lockup and the icons",
   "scripts": {
-    "media": "node scripts/brand-media.mjs"
+    "build": "node scripts/build-assets.mjs"
   },
   "devDependencies": {
     "playwright": "^1.62.1"

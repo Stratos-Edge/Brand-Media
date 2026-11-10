@@ -1,0 +1,12 @@
+/* Stratos Edge mark. Three pieces: the S at rest, the three dots while hovered.
+   <span class="se-mark" role="img" aria-label="Stratos Edge"><i></i><i></i><i></i></span>
+   Size it with font-size: the mark is drawn in a 1em square with its own clear space.
+   On a dark background add "se-mark--reversed". It also opens when a link that contains it is hovered. */
+.se-mark{--se-1:#FF6B4A;--se-2:#527D98;--se-3:#04242D;position:relative;display:inline-block;width:1em;height:1em;font-size:64px;vertical-align:middle}
+.se-mark--reversed{--se-3:#fff}
+.se-mark i{position:absolute;height:14.84%;border-radius:999px;transition:left .7s cubic-bezier(.22,1,.36,1),width .7s cubic-bezier(.22,1,.36,1)}
+.se-mark i:nth-child(1){top:23.05%;left:38.28%;width:33.2%;background:var(--se-1)}
+.se-mark i:nth-child(2){top:42.58%;left:42.58%;width:14.84%;background:var(--se-2)}
+.se-mark i:nth-child(3){top:62.11%;left:28.52%;width:33.2%;background:var(--se-3)}
+.se-mark:hover i:nth-child(1),.se-mark:hover i:nth-child(3),a:hover .se-mark i:nth-child(1),a:hover .se-mark i:nth-child(3){left:42.58%;width:14.84%}
+@media (prefers-reduced-motion:reduce){.se-mark i{transition:none}}

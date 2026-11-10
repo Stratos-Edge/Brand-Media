@@ -2,11 +2,11 @@
 
 Visual identity for Stratos Edge — colors, typography, marks, and the signature devices that make a document instantly recognizable.
 
-For the polished, shareable version with rendered swatches and type specimens, see [Stratos_Edge_Brand_Guide.pdf](./Stratos_Edge_Brand_Guide.pdf).
+For the August 2026 PDF (now out of date on the marks), see `legacy/guides/Stratos_Edge_Brand_Guide.pdf`.
 
-For voice and document profiles, see [Document-Guide.md](./Document-Guide.md).
+For voice and document profiles, see `legacy/guides/Document-Guide.md`.
 
-> **Source of truth:** the live homepage at [stratosedge.ai](https://stratosedge.ai) and the FlightPlan deliverables. If anything here conflicts with what the homepage actually does, the homepage wins — this guide is updated to match. Last reconciled with the site: 12 October 2026 (typography, the sky, the lettermark, the media suite). The PDF guides predate that pass.
+> **Source of truth:** the live homepage at [stratosedge.ai](https://stratosedge.ai) and the FlightPlan deliverables. If anything here conflicts with what the homepage actually does, the homepage wins — this guide is updated to match. Last reconciled with the site: 12 October 2026 (typography, the sky, the media suite). The marks section was rewritten 10 November 2026 for the new mark, which is ahead of the site: the website still shows the old lettermark and wordmark until it is updated. The PDF guides predate both passes.
 
 ---
 
@@ -19,7 +19,8 @@ The whole brand sits on a small palette. Use only these.
 | Role | Hex | Where it lives |
 |---|---|---|
 | **INK** | `#04242D` | Deep teal-black. Headlines, body text, dark backgrounds, footer, wordmark on light. Replaces the older `#0E0E11`. |
-| **CORAL** | `#FF6B4A` | The accent. Periods at the ends of headlines, CTA buttons, eyebrows, single-element emphasis. |
+| **CORAL** | `#FF6B4A` | The accent. Periods at the ends of headlines, CTA buttons, eyebrows, single-element emphasis. In the mark: people. |
+| **STEEL** | `#527D98` | The mark's middle piece (productivity) and the middle dot of the wordmark. Added 10 November 2026 with the mark; not yet used anywhere else. |
 | **WHITE** | `#FFFFFF` | Default page background. |
 | **OFFWHITE** | `#F8F8F8` | Alternating section background, card surfaces. |
 | **CREAM** | `#F2F0E9` | Warm editorial sections, document body backgrounds. |
@@ -54,7 +55,7 @@ Hierarchy on dark is opacity-driven, same principle as light pages. Don't introd
 
 - The old `#0E0E11` "near-black" — replaced by INK `#04242D`.
 - Separate `#555` / `#999` greys for text. Use opacity on INK instead.
-- A blue. Stratos Edge is teal + coral, not teal + blue.
+- A blue other than STEEL, and STEEL only where the mark puts it. Stratos Edge is teal + coral, not teal + blue.
 - More than one coral per visible area. Coral is precious — one mark per moment.
 
 ---
@@ -131,7 +132,7 @@ What we help you do<span style="color: #FF6B4A">.</span>
 
 ## The sky
 
-The one photographic surface in the brand: a pale sky with cirrus, used for the website heroes (home, About, FAQ, answer pages) and for every piece of brand media on a photo (sharing image, banners, avatar, favicon). It is always the same treatment, so the brand reads as one sky everywhere.
+The one photographic surface in the brand: a pale sky with cirrus, used for the website heroes (home, About, FAQ, answer pages) and, until they are redone, for the October 2026 brand media (sharing image, banners, the old avatar and favicon). The new mark does not use the sky; whether the sky stays in the brand media is undecided.
 
 **Construction.** The photo `scripts/brand-media/src/sky-clouds.jpg` as shot, no brightening or desaturation, under a light wash that keeps the clouds and lets navy type sit on it:
 
@@ -147,35 +148,47 @@ The website defines the wash once in `src/app/pages/home/home-intro.css` and the
 
 ## Marks
 
-### Wordmark — `STRATOS | EDGE`
+One mark in three forms, adopted 10 November 2026. Use the fullest form that fits the space: the lockup, then the wordmark, then the S alone. Every file is in `brand-assets/`; see its README for which file goes where. The live specimen is https://stratos-mark.vercel.app (unlisted).
 
-Two colorways for the two backgrounds.
+### The mark — the S
 
-| | Asset |
-|---|---|
-| On light backgrounds (default) | ![Logo black](../brand-assets/core/stratos-logo-black.png) |
-| On dark backgrounds | ![Logo white](../brand-assets/core/stratos-logo-white.png) |
+Three rounded pieces in our three colours, read top to bottom in the order of our three areas:
 
-**Construction.** Work Sans. `STRATOS` at weight 500, letter-spacing `0.18em`. Vertical pipe separator. `EDGE` at weight 300, letter-spacing `0.14em`, opacity 85%. Separator is `1px × 13px` at 25% (on dark) or 15% (on light) opacity.
+| Piece | Colour | Stands for |
+|---|---|---|
+| Top pill | CORAL `#FF6B4A` | People |
+| Middle dot | STEEL `#527D98` | Productivity |
+| Bottom pill | INK `#04242D` | Automation |
 
-**Clear space.** Equal to the cap height of the letterforms on all sides. Never crop into that space.
+Together they form an S: a pill to the right, a dot, a pill to the left. The three pieces can also rest as three stacked dots; that is the mark's other state, used only where it moves (it becomes the S on hover or when a page loads, and always ends on the S). On INK the bottom piece turns white; coral and steel stay as they are.
 
-**Don't:** distort proportions, recolor, add drop-shadows, replace fonts, embed in colored circles, or use the wordmark and the lettermark together in the same composition.
+As an icon (favicon, profile picture, app icon) the S sits on its **canvas**: a rounded, almost-white tile (`#FDFCFA`) with a fine paper grain and a hairline edge. There is a dark canvas (`#0B3441`) for dark surfaces, and `favicon.svg` carries both and follows the system theme. The sky is no longer used behind the mark.
 
-### Lettermark
+Files: `brand-assets/mark/` (bare, in every colourway, plus the animation) and `brand-assets/icon/` (on the canvas, every size, light and dark).
 
-Compact mark for tight contexts where the full wordmark won't fit (favicon, app icon, profile photo, watermark). Carries the signature coral period device. On the sky by default (`brand-assets/core/stratos-favicon.png`, `brand-assets/social/stratos-profile.png`).
+### Wordmark — `STRATOS ⋮ EDGE`
 
-**The chosen drawing is `wordmark`** (12 Oct 2026): the S cut from the wordmark itself, so the favicon and the profile avatar are the same letterform as `STRATOS`. Four drawings exist in the media template (`npm run media` renders all four for review; `LETTERMARK=wordmark npm run media -- --final` exports the chosen one):
+![Wordmark](../brand-assets/wordmark/wordmark-ink.svg)
 
-| Name | What it is |
-|---|---|
-| `serif` | A Source Serif 4 italic S with the coral stop. The drawing behind the August 2026 favicon; retired. |
-| `wordmark` | The S cut from the wordmark itself, with the coral stop. The same letterform as `STRATOS`. |
-| `monogram` | `S | E` from the wordmark, with its divider, stop after the E. |
-| `sans` | A Work Sans light S with the coral stop, the hero headline's own weight. |
+**Construction.** Work Sans. `STRATOS` at weight 500, letter-spacing `0.18em`. `EDGE` at weight 300, letter-spacing `0.14em`, opacity 85%. Between them, where the thin line used to be, the three dots in the mark's colours and order (coral, steel, ink), stacked to the height of the capitals, each dot 0.16em across, 0.42em of space either side. The line divider is retired.
 
-The older black and white lettermark PNGs (the serif drawing on a transparent ground) are kept in `legacy/lettermark/`.
+Two colourways: `wordmark-ink` on light backgrounds, `wordmark-white` on dark (the ink dot turns white). SVG with the letters as outlines, and PNG. In HTML the same wordmark is live text: see `brand-assets/show-page/index.html` for the markup and CSS.
+
+### Lockup — the mark with the wordmark
+
+![Lockup](../brand-assets/lockup/lockup-ink.svg)
+
+The fullest form: the S, 1.06em tall, 0.52em before `STRATOS`, then the wordmark. Where there is room, this is how we appear. `lockup-ink` and `lockup-white`, SVG and PNG, in `brand-assets/lockup/`.
+
+### Rules
+
+- **Clear space.** Round the wordmark and the lockup, the height of the capitals on all sides. Round the bare mark, one dot (the mark files already include it).
+- **Smallest size.** The S on its canvas works down to 16px; bare, keep it at least 20px tall. The wordmark should not go below a 14px cap height.
+- **Don't** outline the pieces, change or reorder the colours, rotate or stretch anything, put the bare mark on a photo or a mid-tone (use the canvas), set the wordmark in another typeface, or bring back the line between the words.
+
+### Retired
+
+The October 2026 lettermark (the S cut from the wordmark on the sky) and the line-divided wordmark are in `legacy/`. They are still what the website and the social accounts show until those are updated.
 
 ---
 
@@ -269,4 +282,4 @@ Use these names. Don't redefine the palette under different variable names.
 
 ## What this guide is not
 
-This is **visual identity only**. For document profiles (Stratos Simple vs Stratos Playbook) and how to format actual documents, see [Document-Guide.md](./Document-Guide.md).
+This is **visual identity only**. For document profiles (Stratos Simple vs Stratos Playbook) and how to format actual documents, see `legacy/guides/Document-Guide.md`.

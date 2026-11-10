@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img"><title>Stratos Edge</title><defs>
+    <clipPath id="c-clip"><rect x="16" y="16" width="480" height="480" rx="112"/></clipPath>
+    <filter id="c-grain" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="3" seed="7"/><feColorMatrix type="saturate" values="0"/></filter></defs>
+  <g clip-path="url(#c-clip)"><rect class="bg" x="16" y="16" width="480" height="480" fill="#FDFCFA"/><rect class="gr" x="16" y="16" width="480" height="480" filter="url(#c-grain)" opacity="0.11" style="mix-blend-mode:multiply"/></g>
+  <rect class="ed" x="16" y="16" width="480" height="480" rx="112" fill="none" stroke="#04242D" stroke-opacity="0.14" stroke-width="2"/>
+  <g transform="translate(256 256) scale(1.08) translate(-256 -256)"><rect x="196" y="118" width="170" height="76" rx="38" fill="#FF6B4A"></rect><rect x="218" y="218" width="76" height="76" rx="38" fill="#527D98"></rect><rect x="146" y="318" width="170" height="76" rx="38" fill="#04242D"></rect></g></svg>
