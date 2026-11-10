@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@300&family=Source+Sans+3:wght@400&display=swap" rel="stylesheet" />
+<style>
+  /* The sharing image, 1200 by 630 CSS px rendered at 2x. Tokens from the website: navy, coral, the sky wash. */
+  :root { --navy: #04242d; --coral: #ff6b4a; }
+  html, body { margin: 0; background: #fff; }
+  .board { position: relative; isolation: isolate; width: 1200px; height: 630px; overflow: hidden; padding: 72px 108px; box-sizing: border-box;
+    display: flex; flex-direction: column; align-items: center; justify-content: space-between; text-align: center; color: var(--navy); }
+  .sky { position: absolute; inset: 0; z-index: -1; }
+  .sky img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 48%; }
+  .sky .wash { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(248,249,249,.82) 0%, rgba(246,247,247,.78) 55%, rgba(253,239,233,.82) 100%); }
+  .wordmark { height: 26px; width: auto; display: block; }
+  .h { margin: 0; font-family: "Work Sans", sans-serif; font-weight: 300; font-size: 88px; line-height: 1.04; letter-spacing: -.02em; }
+  .h .dot { color: var(--coral); }
+  .lead { margin: 32px auto 0; max-width: 800px; font-family: "Source Sans 3", sans-serif; font-size: 31px; line-height: 1.35; color: rgba(4,36,45,.78); text-wrap: balance; }
+  .site { font-family: "Source Sans 3", sans-serif; font-size: 23px; color: rgba(4,36,45,.72); }
+</style></head>
+<body><div class="board">
+  <div class="sky"><img src="sky-clouds.jpg" alt="" /><div class="wash"></div></div>
+  <img class="wordmark" src="../brand-assets/wordmark/wordmark-ink.svg" alt="Stratos Edge" />
+  <div><p class="h">AI strategy consulting<span class="dot">.</span></p>
+    <p class="lead">We help you decide what to do next with AI, what it should return, and who should deliver it.</p></div>
+  <span class="site">stratosedge.ai</span>
+</div></body></html>

@@ -4,7 +4,7 @@ One mark in three forms. Use the fullest form that fits the space: the **lockup*
 
 `usage.png` shows all of this on one page. The live specimen, with the hover animation, is https://stratos-mark.vercel.app (unlisted; its source is in `show-page/`).
 
-**Status (10 November 2026):** adopted. The website and the social accounts still carry the October 2026 lettermark and the line-divided wordmark until they are updated; those files are in `../legacy/`.
+**Status (10 November 2026):** adopted. The website carries it on `staging` (header wordmark, footer lockup, favicons, sharing image) pending promotion to live; the social accounts still carry the October 2026 set until they are updated; those files are in `../legacy/`.
 
 ## Which file to use
 
@@ -15,6 +15,7 @@ One mark in three forms. Use the fullest form that fits the space: the **lockup*
 | The wordmark, on light / on ink | `wordmark/wordmark-ink.svg`, `wordmark/wordmark-white.svg` | Also `.png`, 2400 wide |
 | Favicon | `icon/favicon.svg` | Light icon; switches to the dark one when the browser is in dark mode |
 | Favicon, PNG fallbacks | `icon/favicon-32.png`, `icon/favicon-16.png`, `icon/favicon.ico` | `favicon-dark-*.png` for dark surfaces |
+| Sharing image for links (Open Graph, 2400 by 1260) | `social/sharing-image.png` | Rebuilt by `npm run social` from `scripts/sharing-image.html` |
 | iPhone home-screen icon | `icon/apple-touch-icon-180.png` | Square to the edges; the phone rounds the corners |
 | Profile picture (LinkedIn, YouTube, Slack) | `icon/avatar-1024.png` | Square to the edges; the platform crops to a circle. `avatar-dark-1024.png` for dark |
 | App icon, shortcut, any tile | `icon/icon-s.svg` or `icon-s-<size>.png` | Sizes 16 to 1024; `icon-s-dark*` for dark |
@@ -94,5 +95,5 @@ It needs `ffmpeg` on the PATH (video and GIF) and `uv` (it runs fontTools for th
 
 ## Not done yet
 
-- Replacing the favicon, sharing image and profile pictures on the website and the social accounts.
-- Updating the website header to the new wordmark or lockup.
+- Promoting the website change from `staging` to live.
+- Replacing the profile pictures and covers on the social accounts (`icon/avatar-1024.png`; the covers in `../legacy/social/` still carry the old wordmark).

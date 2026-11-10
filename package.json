@@ -4,7 +4,8 @@
   "private": true,
   "description": "Stratos Edge brand: the mark, the wordmark, the lockup and the icons",
   "scripts": {
-    "build": "node scripts/build-assets.mjs"
+    "build": "node scripts/build-assets.mjs",
+    "social": "node scripts/build-social.mjs"
   },
   "devDependencies": {
     "playwright": "^1.62.1"

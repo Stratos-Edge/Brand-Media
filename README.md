@@ -19,6 +19,7 @@ Brand identity and media assets for Stratos Edge. The company's Claude tools rea
 │  └─ usage.png             one page showing all of it
 ├─ scripts/
 │  ├─ build-assets.mjs      builds brand-assets/ (npm run build)
+│  ├─ build-social.mjs      renders brand-assets/social/ from sharing-image.html (npm run social)
 │  ├─ glyphs.py             letter outlines for the wordmark SVGs, run by the build through uv + fontTools
 │  └─ fonts/                Work Sans (variable), the wordmark's typeface, OFL
 └─ legacy/                  kept for reference, not for use (below)
@@ -37,7 +38,7 @@ The show page deploys as the Vercel project `stratos-mark` (team stratos-edge) f
 
 ## Where the assets are used
 
-Nothing new is live yet. The website, LinkedIn, YouTube and the directory listings still carry the October 2026 set from `legacy/`; swapping them is the next job.
+The website carries the new set on its `staging` branch (10 November 2026), pending promotion to live. LinkedIn, YouTube and the directory listings still carry the October 2026 set from `legacy/`; swapping them is the next job.
 
 | Will be used by | Asset |
 |---|---|
